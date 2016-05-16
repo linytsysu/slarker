@@ -1,3 +1,5 @@
+DROP DATABASE IF EXISTS slarker;
+CREATE DATABASE slarker;
 use slarker;
 DROP TABLE IF EXISTS user_roles;
 DROP TABLE IF EXISTS users;
