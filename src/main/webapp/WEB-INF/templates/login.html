@@ -3,9 +3,8 @@
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
     <head>
         <meta charset="UTF-8"/>
-        <title>Spring Security Example </title>
-        <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}"/>
-        <link rel="stylesheet" type="text/css" href="css/style.css" th:href="@{/css/style.css}"/>
+        <title>Login</title>
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.8/semantic.min.css"/>
     </head>
     <body>
         <div th:if="${param.error}">
@@ -14,10 +13,26 @@
         <div th:if="${param.logout}">
             You have been logged out.
         </div>
+
         <form th:action="@{/login}" method="post">
-            <div><label> User Name : <input type="text" name="username"/> </label></div>
-            <div><label> Password: <input type="password" name="password"/> </label></div>
-            <div><input type="submit" value="Sign In"/></div>
+            <div class="filed">
+                <label>Username</label>
+                <div class="ui left icon input">
+                    <input type="text" name="username" placeholder="Username"/>
+                    <i class="user icon"></i>
+                </div>
+            </div>
+            <div class="field">
+                <label>Password</label>
+                <div class="ui left icon input">
+                    <input type="password" name="password" placeholder="Password"/>
+                    <i class="lock icon"></i>
+                </div>
+            </div>
+            <input type="submit" class="ui blue submit button" value="Login"/>
         </form>
+
+        <script type="text/javascript" src="js/jquery-1.12.3.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.8/semantic.min.js"></script>
     </body>
 </html>
