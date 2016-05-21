@@ -1,16 +1,146 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
-    <head>
-    	<meta charset="UTF-8"/>
-        <title>Spring Security Example</title>
-        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.8/semantic.min.css"/>
-    </head>
-    <body>
-        <h1>Welcome!</h1>
+<head>
+    <meta charset="UTF-8"/>
+    <title>Slarker</title>
+    <link rel="stylesheet" href="libs/semantic-ui/semantic.min.css"/>
+    <link rel="stylesheet" href="css/style.css"/>
+</head>
+<body>
+    <div>
+        <div id="nav-bar">
+            <div class="nav-bar-body">
+                <div class="nav-bar-left">
+                    <a class="nav-bar-element nav-bar-logo" href="#">Slarker</a>
+                    
+                    <div class="nav-bar-element nav-bar-menu">
+                        <ul>
+                            <li>
+                                <a href="#">首页</a>
+                            </li>
+                            <li>
+                                <a href="#">电影</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="clear"></div>
+                    
+                </div>
+                
+                <div class="nav-bar-right">
+                    <div class="nav-bar-element nav-bar-search">
+                        <div class="ui search">
+                            <div class="ui icon input">
+                                <input class="prompt" type="text" placeholder="Search countries..."/>
+                                <i class="search icon"></i>
+                            </div>
+                            <div class="results"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="nav-bar-element nav-bar-login">
+                        <i class="sign in icon"></i>
+                        <a class="" href="#">登录</a>
+                    </div>
+                    
+                    <div class="clear"></div>
+                </div>
+                
+                <div class="clear"></div>
+            </div>
+        </div>
         
-        <p>Click <a th:href="@{/hello}">here</a> to see a greeting.</p>
-
-        <script type="text/javascript" src="js/jquery-1.12.3.min.js"></script>
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.8/semantic.min.js"></script>
-    </body>
+        <div id="main-container">
+            <div class="container-body">
+                <div class="main-left">
+                    <ul>
+                        <li>a</li>
+                        <li>b</li>
+                        <li>c</li>
+                        <li>d</li>
+                    </ul>
+                </div>
+                <div class="main-right">
+                    <div class="main-right-movies">
+                        <div class="image-viewer">
+                            hhh
+                        </div>
+                        <div class="onshow-movie-block">
+                            <div class="onshow-header">
+                                <h3>正在热映</h3>
+                            </div>
+                            <div class="onshow-movies">
+                                <div class="top-movie-block">
+                                    <div class="top-movie-image">
+                                        <img src="images/s_6e62e7d_1549f7abdfd__7d7c.jpg" alt="img"/>
+                                    </div>
+                                    <div class="top-movie-text">
+                                        <div>
+                                            <a href="#">movie title</a>
+                                            <span>8.8</span>
+                                        </div>
+                                        <div>
+                                            <em>类型：</em>
+                                            <p>动画,喜剧,动作</p>
+                                        </div>
+                                        <div>
+                                            <em>导演：</em>
+                                            <p>费格尔·雷利 克雷·卡提斯</p>
+                                        </div>
+                                        <div>
+                                            <em>主演：</em>
+                                            <p>杰森·苏戴奇斯 乔什·盖德 丹尼·麦克布耐德 玛娅·鲁道夫 </p>
+                                        </div>
+                                        <a class="link-button" href="#">选座购票</a>
+                                    </div>
+                                    <div class="clear"></div>
+                                </div>
+                                <div class="movie-list-block">
+                                    <ul>
+                                       <li>
+                                           <div class="movie-img">
+                                               <img src="images/s_747af3c5_153f030b855__79af.jpg" alt="img"/>
+                                           </div>
+                                           <p>分歧者3：忠诚</p>
+                                           <a class="link-button" href="#">选座购票</a>
+                                       </li>
+                                       <li>
+                                           <div class="movie-img">
+                                               <img src="images/s_747af3c5_153f030b855__79af.jpg" alt="img"/>
+                                           </div>
+                                           <p>分歧者3：忠诚</p>
+                                           <a class="link-button" href="#">选座购票</a>
+                                       </li>
+                                       <li>
+                                           <div class="movie-img">
+                                               <img src="images/s_747af3c5_153f030b855__79af.jpg" alt="img"/>
+                                           </div>
+                                           <p>分歧者3：忠诚</p>
+                                           <a class="link-button" href="#">选座购票</a>
+                                       </li>
+                                       <li>
+                                           <div class="movie-img">
+                                               <img src="images/s_747af3c5_153f030b855__79af.jpg" alt="img"/>
+                                           </div>
+                                           <p>分歧者3：忠诚</p>
+                                           <a class="link-button" href="#">选座购票</a>
+                                       </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="main-right-helper">
+                        fff
+                    </div>
+                    <div class="clear"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="libs/jquery/jquery-1.12.3.min.js"></script>
+    <script src="libs/semantic-ui/semantic.min.js"></script>
+    <script src="js/main.js"></script>
+</body>
 </html>
