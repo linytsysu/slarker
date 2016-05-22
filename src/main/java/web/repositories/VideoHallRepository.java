@@ -6,4 +6,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface VideoHallRepository extends CrudRepository<VideoHall, Long> {
+	public VideoHall findByVideoHallId(Long videoHallId);
 }
+

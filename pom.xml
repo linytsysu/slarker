@@ -24,15 +24,16 @@
             <artifactId>spring-boot-starter-security</artifactId>
         </dependency>
 
+		<!-- http://mvnrepository.com/artifact/org.thymeleaf.extras/thymeleaf-extras-springsecurity4 -->
+		<dependency>
+		    <groupId>org.thymeleaf.extras</groupId>
+		    <artifactId>thymeleaf-extras-springsecurity4</artifactId>
+		</dependency>
+
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.thymeleaf.extras</groupId>
-            <artifactId>thymeleaf-extras-springsecurity4</artifactId>
-            <version>2.1.2.RELEASE</version>
         </dependency>
         
         <dependency>
@@ -50,6 +51,11 @@
             <artifactId>mysql-connector-java</artifactId>
         </dependency>
 
+        <dependency>
+        	<groupId>org.neo4j</groupId>
+        	<artifactId>neo4j-cypher-compiler-2.1</artifactId>
+        	<version>2.1.8</version>
+        </dependency>
     </dependencies>
 
     <properties>

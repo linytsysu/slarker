@@ -15,8 +15,9 @@ public class VideoHall implements Serializable {
 	@Column(name="videoHallName")
 	private String videoHallName;
 	
-//	@Column(name = "hallSeatStructure")
-//	private HallSeatStructure hallSeatStructure;
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "hallSeatStructureId")
+	private HallSeatStructure hallSeatStructure;
 	
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "cinemaId")
@@ -26,7 +27,7 @@ public class VideoHall implements Serializable {
 	public VideoHall(Long videoHallId, String videoHallName, HallSeatStructure hallSeatStructure, Cinema cinema) {
 		super();
 		this.videoHallName = videoHallName;
-//		this.hallSeatStructure = hallSeatStructure;
+		this.hallSeatStructure = hallSeatStructure;
 		this.cinema = cinema;
 	}
 	
@@ -46,13 +47,13 @@ public class VideoHall implements Serializable {
 		this.videoHallName = voideHallName;
 	}
 
-//	public HallSeatStructure getHallSeatStructure() {
-//		return hallSeatStructure;
-//	}
-//
-//	public void setHallSeatStructure(HallSeatStructure hallSeatStructure) {
-//		this.hallSeatStructure = hallSeatStructure;
-//	}
+	public HallSeatStructure getHallSeatStructure() {
+		return hallSeatStructure;
+	}
+
+	public void setHallSeatStructure(HallSeatStructure hallSeatStructure) {
+		this.hallSeatStructure = hallSeatStructure;
+	}
 
 	public Cinema getCinema() {
 		return cinema;
