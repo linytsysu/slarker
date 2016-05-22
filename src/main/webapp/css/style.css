@@ -1,3 +1,177 @@
-body {
-	font-size: 20px;
+.clear {
+    clear: both;
+}
+
+/* nav-bar */
+#nav-bar {
+    height: 50px;
+    line-height: 50px;
+    width: 100%;
+    background: #eb6120;
+    margin-bottom: 40px;
+    position: relative;
+    z-index: 50;
+}
+.nav-bar-body {
+    width: 890px;
+    height: 100%;
+    position: relative;
+    z-index: 0;
+    margin: 0 auto
+}
+
+.nav-bar-left {
+    float: left;
+}
+.nav-bar-right {
+    float: right;
+    width: 400px;
+}
+
+.nav-bar-element {
+    float: left;
+}
+
+.nav-bar-logo {
+    color: #fff;
+    font-size: 20px;
+    font-weight: bolder;
+}
+.nav-bar-logo:hover {
+    color: #fff;
+}
+
+.nav-bar-menu {
+    color: #fff;
+    font-size: 18px;
+    font-weight: bolder;
+}
+.nav-bar-menu ul {
+    list-style: none;
+    margin-top: 0px;
+}
+.nav-bar-menu ul li {
+    display: inline-block;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+.nav-bar-menu ul li a {
+    display: block;
+    font-size: 16px;
+    font-weight: bold;
+    height: 36px;
+    line-height: 36px;
+    overflow: hidden;
+    margin: 7px 0;
+    padding: 0 10px;
+    color: #fff;
+}
+.nav-bar-menu ul li a:hover {
+    background-color: #f60;
+    color: #fff;
+}
+
+.nav-bar-search input {
+    width: 250px !important;
+}
+
+
+.nav-bar-login {
+    float: right;
+}
+.nav-bar-login i {
+    color: #fff;
+    font-size: 18px;
+}
+.nav-bar-login a {
+    color: #fff;
+}
+.nav-bar-login a:hover {
+    color: #e0e0e0;
+}
+
+/* main-container */
+#main-container {
+    width: 980px;
+    margin: 0 auto;
+}
+.container-body {
+    position: static;
+}
+
+.main-left {
+    width: 150px;
+    float: left;
+}
+
+.main-right {
+    width: 820px;
+    overflow: hidden;
+    float: right;
+    background: #fff;
+}
+.main-right-movies {
+    width: 500px;
+    float: left;
+}
+.main-right-helper {
+    width: 320px;
+    float: left;
+}
+
+/* .main-right-movies */
+.image-viewer {
+    width: 500px;
+    height: 250px;
+    border: 1px solid #eb6120;
+    margin-bottom: 20px;
+}
+
+/* onshow-movie-block */
+.onshow-header {
+    margin-bottom: 20px;
+}
+.onshow-movies {
+}
+
+/* onshow-movies */
+.top-movie-block .top-movie-image {
+    float: left;
+    padding-right: 10px;
+}
+.top-movie-block .top-movie-text {
+    float: left;
+}
+.link-button {
+    cursor: pointer;
+    display: inline-block;
+    color: #fff;
+    padding: 8px 15px;
+    background-color: #eb6120;
+    border-radius: 5px;
+}
+.link-button:hover {
+    color: #fff;
+    background-color: #f60;
+}
+
+.movie-list-block ul {
+    list-style: none;
+    margin: 20px 0;
+    padding: 0;
+}
+.movie-list-block ul li {
+    float: left;
+    width: 150px;
+    height: 270px;
+    display: inline;
+    margin: 0 8px;
+    overflow: hidden;
+    text-align: center;
+}
+.movie-img {
+    width: 120px;
+    height: 160px;
+    overflow: hidden;
+    margin: 0 auto;
 }

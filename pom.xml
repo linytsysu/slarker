@@ -33,6 +33,11 @@
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
         </dependency>
+		<!-- http://mvnrepository.com/artifact/org.hibernate/hibernate-entitymanager
+		<dependency>
+		    <groupId>org.hibernate</groupId>
+		    <artifactId>hibernate-entitymanager</artifactId>
+		</dependency>-->
 
         <dependency>
             <groupId>mysql</groupId>
