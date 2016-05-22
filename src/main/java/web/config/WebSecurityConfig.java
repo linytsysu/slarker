@@ -11,6 +11,7 @@ import org.springframework.security.config.annotation.web.servlet.configuration.
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import web.security.CustomUserDetailsService;;
 
@@ -19,14 +20,14 @@ import web.security.CustomUserDetailsService;;
 @EnableWebMvcSecurity
 @ComponentScan(basePackageClasses = CustomUserDetailsService.class)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
-	@Autowired
-	private UserDetailsService userDetailsService;
-	
-	 @Autowired
-	 public void configAuthentication(AuthenticationManagerBuilder auth) throws Exception {    
-	     auth.userDetailsService(userDetailsService).passwordEncoder(passwordencoder());
-	 }
-	
+    @Autowired
+    private UserDetailsService userDetailsService;
+    
+    @Autowired
+    public void configAuthentication(AuthenticationManagerBuilder auth) throws Exception {    
+        auth.userDetailsService(userDetailsService).passwordEncoder(passwordencoder());
+    }
+    
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
@@ -39,8 +40,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .permitAll()
                 .and()
             .logout()
+                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                 .permitAll()
-                .and();
+                .logoutSuccessUrl("/");
     }
     
     @Bean(name="passwordEncoder")

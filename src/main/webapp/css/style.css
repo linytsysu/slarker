@@ -92,24 +92,43 @@ body {
 }
 
 
-.nav-bar-login {
+.nav-bar-auth {
+    cursor: pointer;
     float: right;
+    color: #fff;
 }
-.nav-bar-login i {
+.nav-bar-auth i {
     color: #fff;
     font-size: 18px;
 }
-.nav-bar-login a {
+.nav-bar-auth a {
     color: #fff;
 }
-.nav-bar-login a:hover {
+.nav-bar-auth a:hover {
     color: #e0e0e0;
+}
+.user-panel {
+    display: none;
+    float: left;
+    position: absolute;
+    margin-left: -10px;
+    width: 100px;
+    background-color: #f60;
+}
+.nav-bar-auth .user-panel ul {
+    list-style: none;
+    padding-left: 10px;
+    margin: 0px;
+}
+.user-panel-visible {
+    display: block;
 }
 
 /* main-container */
 #main-container {
     width: 980px;
     margin: 0 auto;
+    margin-bottom: 20px;
     background-color: #fff;
 }
 .header {
@@ -258,4 +277,20 @@ body {
     width: 30px;
     height: 26px;
     text-align: center
+}
+
+#login-form-block {
+    height: 600px;
+    padding: 100px;
+}
+#login-form {
+    width: 300px;
+    margin: 0 auto;
+    margin-bottom: 30px;
+}
+#login-form .field {
+    margin: 20px 0;
+}
+#login-form .field .input {
+    width: 100%;
 }
