@@ -5,6 +5,7 @@ import web.models.Seat;
 import java.io.Serializable;
 import java.util.ArrayList;
 //import java.util.List;
+import java.util.List;
 
 import javax.persistence.*;
 
@@ -18,7 +19,7 @@ public class HallSeatStructure implements Serializable {
 	private Long hallSeatStructureId;
 	
 	@Column(name = "Seats")
-	private ArrayList<Seat> seats = new ArrayList<Seat>();;
+	private List<Seat> seats = new ArrayList<Seat>();;
 	
 	public HallSeatStructure() {}
 	
@@ -34,11 +35,11 @@ public class HallSeatStructure implements Serializable {
 		this.hallSeatStructureId = hallSeatStructureId;
 	}
 
-	public ArrayList<Seat> getSeats() {
+	public List<Seat> getSeats() {
 		return seats;
 	}
 
-	public void setSeats(ArrayList<Seat> seats) {
+	public void setSeats(List<Seat> seats) {
 		this.seats = seats;
 	}
 }

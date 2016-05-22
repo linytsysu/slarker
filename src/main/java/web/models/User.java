@@ -9,6 +9,8 @@ import javax.persistence.*;
 @Table(name = "users")
 public class User implements Serializable {
 	
+	public enum Gender{MALE, FEMALE;}
+	
 	private static final long serialVersionUID = 1L;
     
     @Id
@@ -24,6 +26,15 @@ public class User implements Serializable {
 
     @Column(name = "email")
     private String email;
+    
+    @Column(name = "realName")
+    private String realName;
+    
+    @Column(name = "gender")
+    private Gender gender;
+    
+    @Column(name = "phoneNumber")
+    private String phoneNumber;
     
     public User() { }
     
@@ -71,7 +82,29 @@ public class User implements Serializable {
     public void setUserName(String userName) {
         this.userName = userName;
     }
-    
-    
+
+	public String getRealName() {
+		return realName;
+	}
+
+	public void setRealName(String realName) {
+		this.realName = realName;
+	}
+
+	public Gender getGender() {
+		return gender;
+	}
+
+	public void setGender(Gender gender) {
+		this.gender = gender;
+	}
+
+	public String getPhoneNumber() {
+		return phoneNumber;
+	}
+
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
+	}
   
 }

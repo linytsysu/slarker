@@ -3,6 +3,11 @@ package web.models;
 import java.io.Serializable;
 
 public class Seat implements Serializable {
+	private int logicRow;
+	private int logicCol;
+	private int seatRow;
+	private int seatPew;	// pew for the number of row
+	
 	public Seat() {}
 	public Seat(int logicRow, int logicCol, int seatRow, int seatPew) {
 		super();
@@ -11,10 +16,7 @@ public class Seat implements Serializable {
 		this.seatRow = seatRow;
 		this.seatPew = seatPew;
 	}
-	private int logicRow;
-	private int logicCol;
-	private int seatRow;
-	private int seatPew;	// pew for the number of row
+	
 	public int getLogicRow() {
 		return logicRow;
 	}
