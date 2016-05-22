@@ -2,13 +2,12 @@ package web.models;
 
 
 import java.io.Serializable;
-
-
 import javax.persistence.*;
 
 @Entity
 @Table(name = "Cinema") 
 public class Cinema implements Serializable {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name="cinemaId")
@@ -17,42 +16,64 @@ public class Cinema implements Serializable {
 	@Column(name = "cinemaName")
 	private String cinemaName;
 	
-	@Column(name = "address")
-	private String address;
+	@Column(name = "city")
+	private String city;
 	
-	@Column(name = "star")
-	private double star;
+	@Column(name = "town")
+	private String town;
 	
+	@Column(name = "detailedAddress")
+	private String detailedAddress;
+
 	public Cinema() {}
-	public Cinema(Cinema cinema) {
-		this.cinemaId = cinema.cinemaId;
-		this.cinemaName = cinema.cinemaName;
-		this.address = cinema.address;
-		this.star = cinema.star;
+	
+	public Cinema(String cinemaName, String city, String town, String detailedAddress) {
+		super();
+		this.cinemaName = cinemaName;
+		this.city = city;
+		this.town = town;
+		this.detailedAddress = detailedAddress;
 	}
+	
 	public Long getCinemaId() {
 		return cinemaId;
 	}
+
 	public void setCinemaId(Long cinemaId) {
 		this.cinemaId = cinemaId;
 	}
+
 	public String getCinemaName() {
 		return cinemaName;
 	}
+
 	public void setCinemaName(String cinemaName) {
 		this.cinemaName = cinemaName;
 	}
-	public String getAddress() {
-		return address;
+
+	public String getCity() {
+		return city;
 	}
-	public void setAddress(String address) {
-		this.address = address;
+
+	public void setCity(String city) {
+		this.city = city;
 	}
-	public double getStar() {
-		return star;
+
+	public String getTown() {
+		return town;
 	}
-	public void setStar(double star) {
-		this.star = star;
+
+	public void setTown(String town) {
+		this.town = town;
 	}
+
+	public String getDetailedAddress() {
+		return detailedAddress;
+	}
+
+	public void setDetailedAddress(String detailedAddress) {
+		this.detailedAddress = detailedAddress;
+	}
+	
 	
 }
