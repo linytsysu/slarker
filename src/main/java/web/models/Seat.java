@@ -1,6 +1,8 @@
 package web.models;
 
-public class Seat {
+import java.io.Serializable;
+
+public class Seat implements Serializable {
 	public Seat() {}
 	public Seat(int logicRow, int logicCol, int seatRow, int seatPew) {
 		super();
