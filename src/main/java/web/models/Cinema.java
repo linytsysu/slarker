@@ -16,22 +16,19 @@ public class Cinema implements Serializable {
 	@Column(name = "cinemaName")
 	private String cinemaName;
 	
-	@Column(name = "city")
-	private String city;
-	
-	@Column(name = "town")
-	private String town;
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "code")
+	private Region region;
 	
 	@Column(name = "detailedAddress")
 	private String detailedAddress;
 
 	public Cinema() {}
 	
-	public Cinema(String cinemaName, String city, String town, String detailedAddress) {
+	public Cinema(String cinemaName, Region region, String detailedAddress) {
 		super();
 		this.cinemaName = cinemaName;
-		this.city = city;
-		this.town = town;
+		this.region = region;
 		this.detailedAddress = detailedAddress;
 	}
 	
@@ -51,28 +48,20 @@ public class Cinema implements Serializable {
 		this.cinemaName = cinemaName;
 	}
 
-	public String getCity() {
-		return city;
-	}
-
-	public void setCity(String city) {
-		this.city = city;
-	}
-
-	public String getTown() {
-		return town;
-	}
-
-	public void setTown(String town) {
-		this.town = town;
-	}
-
 	public String getDetailedAddress() {
 		return detailedAddress;
 	}
 
 	public void setDetailedAddress(String detailedAddress) {
 		this.detailedAddress = detailedAddress;
+	}
+
+	public Region getRegion() {
+		return region;
+	}
+
+	public void setRegion(Region region) {
+		this.region = region;
 	}
 	
 	

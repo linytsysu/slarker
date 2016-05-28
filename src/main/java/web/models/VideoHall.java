@@ -15,8 +15,8 @@ public class VideoHall implements Serializable {
 	@Column(name="videoHallName")
 	private String videoHallName;
 	
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "hallSeatStructureId")
+//	@OneToOne(cascade = CascadeType.ALL)
+//	@JoinColumn(name = "hallSeatStructureId")
 	private HallSeatStructure hallSeatStructure;
 	
 	@OneToOne(cascade = CascadeType.ALL)

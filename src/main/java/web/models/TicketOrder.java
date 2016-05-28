@@ -1,15 +1,16 @@
 package web.models;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import javax.persistence.*;
 
 @Entity
-@Table(name = "Order")
-public class Order implements Serializable {
-	public enum OrderStatus{UNPAID, PAID, CLOSED;}
+@Table(name = "TicketOrder")
+public class TicketOrder implements Serializable {
+	public enum OrderStatus {UNPAID, PAID, CLOSED;}
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -18,15 +19,14 @@ public class Order implements Serializable {
 	
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "movieSceneId")
-	@Column(name = "movieScene")
 	private MovieScene movieScene;
 	
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "userId")
-	@Column(name = "user")
 	private User user;
 	
-	private List<SeatInfo> orderedSeatInfos;
+	@Column(name = "orderedSeatInfos")
+	private ArrayList<SeatInfo> orderedSeatInfos;
 	
 	@Temporal(TemporalType.DATE)
 	@Column(name = "createdDate")
@@ -34,7 +34,6 @@ public class Order implements Serializable {
 	
 	@Column(name = "orderStatus")
 	private OrderStatus orderStatus;
-
 	
 	public Long getOrderId() {
 		return orderId;
@@ -60,11 +59,11 @@ public class Order implements Serializable {
 		this.user = user;
 	}
 
-	public List<SeatInfo> getOrderedSeatInfos() {
+	public ArrayList<SeatInfo> getOrderedSeatInfos() {
 		return orderedSeatInfos;
 	}
 
-	public void setOrderedSeatInfos(List<SeatInfo> orderedSeatInfos) {
+	public void setOrderedSeatInfos(ArrayList<SeatInfo> orderedSeatInfos) {
 		this.orderedSeatInfos = orderedSeatInfos;
 	}
 

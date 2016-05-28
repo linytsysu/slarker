@@ -3,8 +3,8 @@ package web.repositories;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import web.models.CityTown;
+import web.models.Region;
 
 @Repository
-public interface CityTownRepository extends CrudRepository<CityTown, String> {
+public interface RegionRepository extends CrudRepository<Region, String> {
 }

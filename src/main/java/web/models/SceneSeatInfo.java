@@ -1,6 +1,7 @@
 package web.models;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.*;
@@ -14,6 +15,7 @@ public class SceneSeatInfo implements Serializable {
 	@Column(name = "sceneSeatInfoId")
 	private long sceneSeatInfoId;
 	
+	@ElementCollection
 	@Column(name = "seatInfos")
 	private List<SeatInfo> seatInfos;
 

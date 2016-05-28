@@ -1,6 +1,7 @@
 package web.models;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -18,15 +19,18 @@ public class Movie implements Serializable {
 	@Column(name = "name")
 	private String name;
 	
+	@ElementCollection
 	@Column(name = "directors")
 	private List<String> directors;
 	
+	@ElementCollection
 	@Column(name = "actors")
 	private List<String> actors;
 	
 	@Column(name = "poster")
 	private String poster;
 	
+	@ElementCollection
 	@Column(name = "type")
 	private List<String> type;
 	

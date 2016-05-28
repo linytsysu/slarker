@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.neo4j.cypher.internal.compiler.v2_1.docbuilders.logicalPlanDocBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
+//import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,13 +22,14 @@ public class GreetingController {
 	@Autowired
 	private VideoHallRepository videoHallRepository;
 	
+//	@Autowired
+//	private PasswordEncoder passwordEncoder;
+	
     @RequestMapping("/greeting")
     public String greeting(@RequestParam(value="name", required=false, defaultValue="World") String name, Model model) {
         
     	Cinema cinema = new Cinema();
     	cinema.setCinemaName("万达影院");
-    	cinema.setCity("广州");
-    	cinema.setTown("番禺区");
     	cinema.setDetailedAddress("大学城GOGO新天地三楼");
     	
     	HallSeatStructure hallSeatStructure = new HallSeatStructure();
@@ -69,5 +71,11 @@ public class GreetingController {
 		return "greeting";
     }
 
+    @RequestMapping("/insertData")
+    public String insertData(@RequestParam(value="name", required=false, defaultValue="World") String name, Model model) {
+    	
+    	
+    	return "greeting";
+    }
 }
 

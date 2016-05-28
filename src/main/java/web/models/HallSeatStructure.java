@@ -18,8 +18,9 @@ public class HallSeatStructure implements Serializable {
 	@Column(name = "hallSeatStructureId")
 	private Long hallSeatStructureId;
 	
+	@ElementCollection
 	@Column(name = "Seats")
-	private List<Seat> seats = new ArrayList<Seat>();;
+	private List<Seat> seats;
 	
 	public HallSeatStructure() {}
 	
