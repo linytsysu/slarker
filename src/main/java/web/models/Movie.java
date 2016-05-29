@@ -2,15 +2,36 @@ package web.models;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.Calendar;
 import java.util.List;
 
 import javax.persistence.*;
+
+import utils.SlkUtil;
 
 @Entity
 @Table(name = "Movie")
 public class Movie implements Serializable {
 	
+	@SuppressWarnings("unchecked")
+	public Movie(String name, List<String> directors, List<String> actors, String poster, List<String> type,
+			String country, String language, String duration, Calendar releaseTime, List<String> version, double star,
+			String backgroundImage) {
+		super();
+		this.name = name;
+		this.directors = (List<String>)SlkUtil.deepClone(directors);
+		this.actors = (List<String>)SlkUtil.deepClone(actors);
+		this.poster = poster;
+		this.type = (List<String>)SlkUtil.deepClone(type);
+		this.country = country;
+		this.language = language;
+		this.duration = duration;
+		this.releaseTime = (Calendar) SlkUtil.deepClone(releaseTime);
+		this.version = (List<String>)SlkUtil.deepClone(version);
+		this.star = star;
+		this.backgroundImage = backgroundImage;
+	}
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "movieId")
@@ -45,17 +66,17 @@ public class Movie implements Serializable {
 	
 	@Temporal(TemporalType.DATE)
 	@Column(name = "releaseTime")
-	private Date releaseTime;
+	private Calendar releaseTime;
 	
+	@ElementCollection
 	@Column(name = "version")
-	private String version;
+	private List<String> version;
 	
 	@Column(name = "star")
 	private double star;
 	
 	@Column(name = "backgroundImage")
 	private String backgroundImage;
-	
 
 	public Long getMovieId() {
 		return movieId;
@@ -77,16 +98,18 @@ public class Movie implements Serializable {
 		return directors;
 	}
 
+	@SuppressWarnings("unchecked")
 	public void setDirectors(List<String> directors) {
-		this.directors = directors;
+		this.directors = (List<String>)SlkUtil.deepClone(directors);
 	}
 
 	public List<String> getActors() {
 		return actors;
 	}
 
+	@SuppressWarnings("unchecked")
 	public void setActors(List<String> actors) {
-		this.actors = actors;
+		this.actors = (List<String>)SlkUtil.deepClone(actors);
 	}
 
 	public String getPoster() {
@@ -101,8 +124,9 @@ public class Movie implements Serializable {
 		return type;
 	}
 
+	@SuppressWarnings("unchecked")
 	public void setType(List<String> type) {
-		this.type = type;
+		this.type = (List<String>)SlkUtil.deepClone(type);
 	}
 
 	public String getCountry() {
@@ -129,20 +153,21 @@ public class Movie implements Serializable {
 		this.duration = duration;
 	}
 
-	public Date getReleaseTime() {
+	public Calendar getReleaseTime() {
 		return releaseTime;
 	}
 
-	public void setReleaseTime(Date releaseTime) {
-		this.releaseTime = releaseTime;
+	public void setReleaseTime(Calendar releaseTime) {
+		this.releaseTime = (Calendar) SlkUtil.deepClone(releaseTime);
 	}
 
-	public String getVersion() {
+	public List<String> getVersion() {
 		return version;
 	}
 
-	public void setVersion(String version) {
-		this.version = version;
+	@SuppressWarnings("unchecked")
+	public void setVersion(List<String> version) {
+		this.version = (List<String>)SlkUtil.deepClone(version);
 	}
 
 	public double getStar() {

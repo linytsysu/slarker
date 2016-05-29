@@ -9,6 +9,8 @@ import java.util.List;
 
 import javax.persistence.*;
 
+import utils.SlkUtil;
+
 @Entity
 @Table(name = "HallSeatStructure")
 public class HallSeatStructure implements Serializable {
@@ -24,8 +26,14 @@ public class HallSeatStructure implements Serializable {
 	
 	public HallSeatStructure() {}
 	
+	@SuppressWarnings("unchecked")
+	public HallSeatStructure(List<Seat> seats) {
+		// TODO Auto-generated constructor stub
+		this.seats = (List<Seat>)SlkUtil.deepClone(seats);
+	}
+
 	public void addSeat(Seat seat) {
-		seats.add(seat);
+		seats.add((Seat) SlkUtil.deepClone(seat));
 	}
 
 	public Long getHallSeatStructureId() {
@@ -40,7 +48,8 @@ public class HallSeatStructure implements Serializable {
 		return seats;
 	}
 
+	@SuppressWarnings("unchecked")
 	public void setSeats(List<Seat> seats) {
-		this.seats = seats;
+		this.seats = (List<Seat>)SlkUtil.deepClone(seats);
 	}
 }

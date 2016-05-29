@@ -1,13 +1,27 @@
 package web.models;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.List;
 
 import javax.persistence.*;
+
+import utils.SlkUtil;
 
 @Entity
 @Table(name = "MovieScene")
 public class MovieScene implements Serializable {
+
+	public MovieScene(Calendar calendar, double price, Movie movie, VideoHall videoHall) {
+		super();
+		this.calendar = (Calendar)SlkUtil.deepClone(calendar);
+		this.price = price;
+		this.movie = (Movie) SlkUtil.deepClone(movie);
+		this.videoHall = (VideoHall) SlkUtil.deepClone(videoHall);
+		
+		this.sceneSeatInfo = new SceneSeatInfo(videoHall.getHallSeatStructure());
+	}
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -16,11 +30,8 @@ public class MovieScene implements Serializable {
 	
 	// " Colume : name = beginDate " will cause an error while building the table.
 	@Temporal(TemporalType.DATE)
-	@Column(name = "date")
-	private Date date;
-	
-	@Column(name = "beginTime")
-	private String beginTime;
+	@Column(name = "calendar")
+	private Calendar calendar;
 	
 	@Column(name = "price")
 	private double price;
@@ -36,14 +47,7 @@ public class MovieScene implements Serializable {
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "sceneSeatInfoId")
 	private SceneSeatInfo sceneSeatInfo;
-
-	public String getBeginTime() {
-		return beginTime;
-	}
-
-	public void setBeginTime(String beginTime) {
-		this.beginTime = beginTime;
-	}
+	
 
 	public double getPrice() {
 		return price;
@@ -58,7 +62,7 @@ public class MovieScene implements Serializable {
 	}
 
 	public void setMovie(Movie movie) {
-		this.movie = movie;
+		this.movie = (Movie) SlkUtil.deepClone(movie);
 	}
 
 	public VideoHall getVideoHall() {
@@ -66,7 +70,7 @@ public class MovieScene implements Serializable {
 	}
 
 	public void setVideoHall(VideoHall videoHall) {
-		this.videoHall = videoHall;
+		this.videoHall = (VideoHall) SlkUtil.deepClone(videoHall);
 	}
 
 	public SceneSeatInfo getSceneSeatInfo() {
@@ -74,7 +78,7 @@ public class MovieScene implements Serializable {
 	}
 
 	public void setSceneSeatInfo(SceneSeatInfo sceneSeatInfo) {
-		this.sceneSeatInfo = sceneSeatInfo;
+		this.sceneSeatInfo = (SceneSeatInfo) SlkUtil.deepClone(sceneSeatInfo);
 	}
 
 	public Long getMovieSceneId() {
@@ -85,11 +89,15 @@ public class MovieScene implements Serializable {
 		this.movieSceneId = movieSceneId;
 	}
 
-	public Date getBeginDate() {
-		return date;
+	public Calendar getBeginDate() {
+		return calendar;
 	}
 
-	public void setBeginDate(Date date) {
-		this.date = date;
+	public void setBeginDate(Calendar calendar) {
+		this.calendar = (Calendar) SlkUtil.deepClone(calendar);
+	}
+	
+	public List<SeatInfo> getAvailSeatRandom(double probability) {
+		return this.sceneSeatInfo.getAvailSeatRandom(probability);
 	}
 }

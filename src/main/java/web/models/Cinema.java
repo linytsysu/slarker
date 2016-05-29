@@ -4,6 +4,9 @@ package web.models;
 import java.io.Serializable;
 import javax.persistence.*;
 
+import ch.qos.logback.classic.pattern.Util;
+import utils.SlkUtil;
+
 @Entity
 @Table(name = "Cinema") 
 public class Cinema implements Serializable {
@@ -28,7 +31,7 @@ public class Cinema implements Serializable {
 	public Cinema(String cinemaName, Region region, String detailedAddress) {
 		super();
 		this.cinemaName = cinemaName;
-		this.region = region;
+		this.region = (Region)SlkUtil.deepClone(region);
 		this.detailedAddress = detailedAddress;
 	}
 	
@@ -61,7 +64,7 @@ public class Cinema implements Serializable {
 	}
 
 	public void setRegion(Region region) {
-		this.region = region;
+		this.region = (Region)SlkUtil.deepClone(region);
 	}
 	
 	

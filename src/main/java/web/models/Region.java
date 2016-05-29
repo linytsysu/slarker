@@ -16,6 +16,22 @@ public class Region implements Serializable {
 	
 	@Column(name = "city")
 	private String city;
+	
+	public Region() {}
+	
+	public Region(String code, String town, String city) {
+		// TODO Auto-generated constructor stub
+		this.code = code;
+		this.town = town;
+		this.city = city;
+	}
+
+	public Region(Region region) {
+		// TODO Auto-generated constructor stub
+		this.code = region.code;
+		this.town = region.town;
+		this.city = region.city;
+	}
 
 	public String getCode() {
 		return code;

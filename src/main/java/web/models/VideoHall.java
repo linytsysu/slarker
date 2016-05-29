@@ -2,6 +2,7 @@ package web.models;
 import java.io.Serializable;
 import javax.persistence.*;
 
+import utils.SlkUtil;
 import web.models.HallSeatStructure;
 
 @Entity
@@ -24,11 +25,11 @@ public class VideoHall implements Serializable {
 	private Cinema cinema;
 
 	public VideoHall() {}
-	public VideoHall(Long videoHallId, String videoHallName, HallSeatStructure hallSeatStructure, Cinema cinema) {
+	public VideoHall(String videoHallName, HallSeatStructure hallSeatStructure, Cinema cinema) {
 		super();
-		this.videoHallName = videoHallName;
-		this.hallSeatStructure = hallSeatStructure;
-		this.cinema = cinema;
+		this.videoHallName = (String) SlkUtil.deepClone(videoHallName);
+		this.hallSeatStructure = (HallSeatStructure) SlkUtil.deepClone(hallSeatStructure);
+		this.cinema = (Cinema) SlkUtil.deepClone(cinema);
 	}
 	
 	public Long getVideoHallId() {
@@ -52,7 +53,7 @@ public class VideoHall implements Serializable {
 	}
 
 	public void setHallSeatStructure(HallSeatStructure hallSeatStructure) {
-		this.hallSeatStructure = hallSeatStructure;
+		this.hallSeatStructure = (HallSeatStructure) SlkUtil.deepClone(hallSeatStructure);
 	}
 
 	public Cinema getCinema() {
@@ -60,6 +61,6 @@ public class VideoHall implements Serializable {
 	}
 
 	public void setCinema(Cinema cinema) {
-		this.cinema = cinema;
+		this.cinema = (Cinema) SlkUtil.deepClone(cinema);
 	}
 }

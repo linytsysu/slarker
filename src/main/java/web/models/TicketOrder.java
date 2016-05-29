@@ -2,10 +2,13 @@ package web.models;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
 import javax.persistence.*;
+
+import utils.SlkUtil;
 
 @Entity
 @Table(name = "TicketOrder")
@@ -25,16 +28,31 @@ public class TicketOrder implements Serializable {
 	@JoinColumn(name = "userId")
 	private User user;
 	
+	@ElementCollection
 	@Column(name = "orderedSeatInfos")
-	private ArrayList<SeatInfo> orderedSeatInfos;
+	private List<SeatInfo> orderedSeatInfos;
 	
 	@Temporal(TemporalType.DATE)
 	@Column(name = "createdDate")
-	private Date createdDate;
+	private Calendar createdDate;
 	
 	@Column(name = "orderStatus")
 	private OrderStatus orderStatus;
 	
+	@SuppressWarnings("unchecked")
+	public TicketOrder(MovieScene movie_scene_1, User user_1, List<SeatInfo> avail_seat_1, Calendar createDate) {
+		// TODO Auto-generated constructor stub
+		this.movieScene = (MovieScene) SlkUtil.deepClone(movie_scene_1);
+		this.user = (User) SlkUtil.deepClone(user_1);
+		this.orderedSeatInfos = (List<SeatInfo>)SlkUtil.deepClone(avail_seat_1);
+		this.createdDate = (Calendar) SlkUtil.deepClone(createDate);
+		this.orderStatus = OrderStatus.UNPAID;
+		
+		for (SeatInfo seat_info : orderedSeatInfos) {
+			seat_info.setOptioned();
+		}
+	}
+
 	public Long getOrderId() {
 		return orderId;
 	}
@@ -48,7 +66,7 @@ public class TicketOrder implements Serializable {
 	}
 
 	public void setMovieScene(MovieScene movieScene) {
-		this.movieScene = movieScene;
+		this.movieScene = (MovieScene) SlkUtil.deepClone(movieScene);
 	}
 
 	public User getUser() {
@@ -56,23 +74,24 @@ public class TicketOrder implements Serializable {
 	}
 
 	public void setUser(User user) {
-		this.user = user;
+		this.user = (User) SlkUtil.deepClone(user);
 	}
 
-	public ArrayList<SeatInfo> getOrderedSeatInfos() {
+	public List<SeatInfo> getOrderedSeatInfos() {
 		return orderedSeatInfos;
 	}
 
-	public void setOrderedSeatInfos(ArrayList<SeatInfo> orderedSeatInfos) {
-		this.orderedSeatInfos = orderedSeatInfos;
+	@SuppressWarnings("unchecked")
+	public void setOrderedSeatInfos(List<SeatInfo> orderedSeatInfos) {
+		this.orderedSeatInfos = (List<SeatInfo>) SlkUtil.deepClone(orderedSeatInfos);
 	}
 
-	public Date getCreatedDate() {
+	public Calendar getCreatedDate() {
 		return createdDate;
 	}
 
-	public void setCreatedDate(Date createdDate) {
-		this.createdDate = createdDate;
+	public void setCreatedDate(Calendar createdDate) {
+		this.createdDate = (Calendar) SlkUtil.deepClone(createdDate);
 	}
 
 	public OrderStatus getOrderStatus() {

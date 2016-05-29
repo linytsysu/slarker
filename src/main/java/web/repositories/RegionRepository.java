@@ -7,4 +7,5 @@ import web.models.Region;
 
 @Repository
 public interface RegionRepository extends CrudRepository<Region, String> {
+
 }
