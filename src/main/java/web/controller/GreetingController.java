@@ -13,7 +13,6 @@ import web.models.Cinema;
 import web.models.HallSeatStructure;
 import web.models.Seat;
 import web.models.VideoHall;
-import web.repositories.CinemaRepository;
 import web.repositories.VideoHallRepository;
 
 @Controller
@@ -21,18 +20,6 @@ public class GreetingController {
 
 	@Autowired
 	private VideoHallRepository videoHallRepository;
-	
-	@Autowired
-	private CinemaRepository cinema_repo;
-
-    @RequestMapping("/thymeleaf")
-    public String thymeleaf(@RequestParam(value="name", required=false, defaultValue="World") String name, Model model) {
-    	List<Cinema> cinemas = (List<Cinema>) cinema_repo.findAll();
-    	
-    	model.addAttribute("cinemas", cinemas);
-    	
-    	return "thymeleaf";
-    }
 	
 //	@Autowired
 //	private PasswordEncoder passwordEncoder;
@@ -89,5 +76,4 @@ public class GreetingController {
     	
     	return "greeting";
     }
-    
 }
