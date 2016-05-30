@@ -1,10 +1,12 @@
 package web.models;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import javax.persistence.*;
+
 
 @Entity
 @Table(name = "Movie")
@@ -13,7 +15,26 @@ public class Movie implements Serializable {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
+
+	private static final long serialVersionUID = 5046320505351582223L;
+
+	public Movie(String name, List<String> directors, List<String> actors, String poster, List<String> type,
+			String country, String language, String duration, Calendar releaseTime, List<String> version, double star,
+			String backgroundImage) {
+		super();
+		this.name = name;
+		this.directors = directors;
+		this.actors = actors;
+		this.poster = poster;
+		this.type = type;
+		this.country = country;
+		this.language = language;
+		this.duration = duration;
+		this.releaseTime = releaseTime;
+		this.version = version;
+		this.star = star;
+		this.backgroundImage = backgroundImage;
+	}
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -23,15 +44,18 @@ public class Movie implements Serializable {
 	@Column(name = "name")
 	private String name;
 	
+	@ElementCollection
 	@Column(name = "directors")
 	private List<String> directors;
 	
+	@ElementCollection
 	@Column(name = "actors")
 	private List<String> actors;
 	
 	@Column(name = "poster")
 	private String poster;
 	
+	@ElementCollection
 	@Column(name = "type")
 	private List<String> type;
 	
@@ -46,17 +70,17 @@ public class Movie implements Serializable {
 	
 	@Temporal(TemporalType.DATE)
 	@Column(name = "releaseTime")
-	private Date releaseTime;
+	private Calendar releaseTime;
 	
+	@ElementCollection
 	@Column(name = "version")
-	private String version;
+	private List<String> version;
 	
 	@Column(name = "star")
 	private double star;
 	
 	@Column(name = "backgroundImage")
 	private String backgroundImage;
-	
 
 	public Long getMovieId() {
 		return movieId;
@@ -130,19 +154,19 @@ public class Movie implements Serializable {
 		this.duration = duration;
 	}
 
-	public Date getReleaseTime() {
+	public Calendar getReleaseTime() {
 		return releaseTime;
 	}
 
-	public void setReleaseTime(Date releaseTime) {
+	public void setReleaseTime(Calendar releaseTime) {
 		this.releaseTime = releaseTime;
 	}
 
-	public String getVersion() {
+	public List<String> getVersion() {
 		return version;
 	}
 
-	public void setVersion(String version) {
+	public void setVersion(List<String> version) {
 		this.version = version;
 	}
 

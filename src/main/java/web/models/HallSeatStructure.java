@@ -9,6 +9,7 @@ import java.util.List;
 
 import javax.persistence.*;
 
+
 @Entity
 @Table(name = "HallSeatStructure")
 public class HallSeatStructure implements Serializable {
@@ -16,18 +17,25 @@ public class HallSeatStructure implements Serializable {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
+
+	private static final long serialVersionUID = 3314206697106092840L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "hallSeatStructureId")
 	private Long hallSeatStructureId;
 	
-	@Column(name = "Seats")
-	private List<Seat> seats = new ArrayList<Seat>();;
+	@ElementCollection
+	@Column(name = "seats")
+	private List<Seat> seats;
 	
 	public HallSeatStructure() {}
 	
+	public HallSeatStructure(List<Seat> seats) {
+		// TODO Auto-generated constructor stub
+		this.seats = seats;
+	}
+
 	public void addSeat(Seat seat) {
 		seats.add(seat);
 	}

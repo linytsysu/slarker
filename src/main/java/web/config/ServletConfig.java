@@ -12,6 +12,8 @@ import org.thymeleaf.spring4.templateresolver.SpringResourceTemplateResolver;
 import org.thymeleaf.spring4.view.ThymeleafViewResolver;
 import org.thymeleaf.extras.springsecurity4.dialect.SpringSecurityDialect;
 
+import web.InsertData;
+
 @Configuration
 @EnableWebMvc
 public class ServletConfig extends WebMvcConfigurerAdapter {
@@ -55,5 +57,12 @@ public class ServletConfig extends WebMvcConfigurerAdapter {
         registry.addResourceHandler("/css/**").addResourceLocations("/css/");
         registry.addResourceHandler("/libs/**").addResourceLocations("/libs/");
         registry.addResourceHandler("/js/**").addResourceLocations("/js/");
+    }
+    
+    // Initiate an Object when Starting application.
+    @Bean
+    public InsertData insertDate() {
+    	InsertData insert_date = new InsertData();
+    	return insert_date;
     }
 }

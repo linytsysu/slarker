@@ -7,11 +7,10 @@ import web.models.HallSeatStructure;
 @Entity
 @Table(name = "VideoHall")
 public class VideoHall implements Serializable {
-	
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 7142566708612749482L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -21,16 +20,16 @@ public class VideoHall implements Serializable {
 	@Column(name="videoHallName")
 	private String videoHallName;
 	
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne
 	@JoinColumn(name = "hallSeatStructureId")
 	private HallSeatStructure hallSeatStructure;
 	
-	@OneToOne(cascade = CascadeType.ALL)
+	@ManyToOne
 	@JoinColumn(name = "cinemaId")
 	private Cinema cinema;
 
 	public VideoHall() {}
-	public VideoHall(Long videoHallId, String videoHallName, HallSeatStructure hallSeatStructure, Cinema cinema) {
+	public VideoHall(String videoHallName, HallSeatStructure hallSeatStructure, Cinema cinema) {
 		super();
 		this.videoHallName = videoHallName;
 		this.hallSeatStructure = hallSeatStructure;

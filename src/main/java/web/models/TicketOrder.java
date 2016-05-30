@@ -1,46 +1,61 @@
 package web.models;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
 import javax.persistence.*;
 
+
 @Entity
-@Table(name = "Order")
-public class Order implements Serializable {
+@Table(name = "TicketOrder")
+public class TicketOrder implements Serializable {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = -7176047837465838418L;
 
-	public enum OrderStatus{UNPAID, PAID, CLOSED;}
-	
+	public enum OrderStatus {UNPAID, PAID, CLOSED;}
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "orderId")
 	private Long orderId;
 	
-	@OneToOne(cascade = CascadeType.ALL)
+	@ManyToOne
 	@JoinColumn(name = "movieSceneId")
-	@Column(name = "movieScene")
 	private MovieScene movieScene;
 	
-	@OneToOne(cascade = CascadeType.ALL)
+	@ManyToOne
 	@JoinColumn(name = "userId")
-	@Column(name = "user")
 	private User user;
 	
+	@ElementCollection
+	@Column(name = "orderedSeatInfos", length=1000)
 	private List<SeatInfo> orderedSeatInfos;
 	
 	@Temporal(TemporalType.DATE)
 	@Column(name = "createdDate")
-	private Date createdDate;
+	private Calendar createdDate;
 	
 	@Column(name = "orderStatus")
 	private OrderStatus orderStatus;
-
 	
+	public TicketOrder(MovieScene movie_scene_1, User user_1, List<SeatInfo> avail_seat_1, Calendar createDate) {
+		// TODO Auto-generated constructor stub
+		this.movieScene = movie_scene_1;
+		this.user = user_1;
+		this.orderedSeatInfos = avail_seat_1;
+		this.createdDate = createDate;
+		this.orderStatus = OrderStatus.UNPAID;
+		
+		for (SeatInfo seat_info : orderedSeatInfos) {
+			seat_info.setOptioned();
+		}
+	}
+
 	public Long getOrderId() {
 		return orderId;
 	}
@@ -73,11 +88,11 @@ public class Order implements Serializable {
 		this.orderedSeatInfos = orderedSeatInfos;
 	}
 
-	public Date getCreatedDate() {
+	public Calendar getCreatedDate() {
 		return createdDate;
 	}
 
-	public void setCreatedDate(Date createdDate) {
+	public void setCreatedDate(Calendar createdDate) {
 		this.createdDate = createdDate;
 	}
 

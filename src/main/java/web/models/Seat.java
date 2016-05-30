@@ -1,12 +1,14 @@
 package web.models;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Seat implements Serializable {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 8705772480859972653L;
 	private int logicRow;
 	private int logicCol;
 	private int seatRow;
@@ -45,5 +47,22 @@ public class Seat implements Serializable {
 	public void setSeatPew(int seatPew) {
 		this.seatPew = seatPew;
 	}
+	
+	// method for add data
+	public static List<Seat> getSeatListRandom(int row, int col, double probability) {
+		List<Seat> seats = new ArrayList<Seat>();
+		for (int r = 1; r <= row; ++r) {
+			int cc = 1;
+			for (int c = 1; c <= col; ++c) {
+				double rd = Math.random();
+				if (rd > probability) continue;
+				Seat seat = new Seat(r, c, r, cc);
+				seats.add(seat);
+				++cc;
+			}
+		}
+		return seats;
+	}
+	
 	
 }

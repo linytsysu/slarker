@@ -11,12 +11,14 @@ public class CityTown implements Serializable {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 7964093972260534234L;
+
 
 	@Id
 	@Column(name = "city")
 	private String city;
 	
+	@ElementCollection
 	@Column(name = "towns")
 	private List<String> towns;
 
