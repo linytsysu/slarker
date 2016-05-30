@@ -11,6 +11,11 @@ import javax.persistence.*;
 @Table(name = "SceneSeatInfo")
 public class SceneSeatInfo implements Serializable {
 	
+	public SceneSeatInfo() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
 	/**
 	 * 
 	 */

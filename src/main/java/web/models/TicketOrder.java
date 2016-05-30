@@ -43,6 +43,8 @@ public class TicketOrder implements Serializable {
 	@Column(name = "orderStatus")
 	private OrderStatus orderStatus;
 	
+	public TicketOrder() {}
+	
 	public TicketOrder(MovieScene movie_scene_1, User user_1, List<SeatInfo> avail_seat_1, Calendar createDate) {
 		// TODO Auto-generated constructor stub
 		this.movieScene = movie_scene_1;
