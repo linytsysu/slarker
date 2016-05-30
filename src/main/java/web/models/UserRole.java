@@ -1,12 +1,27 @@
 package web.models;
 
+import java.io.Serializable;
+
 import javax.persistence.*;
 
 @Entity
 @Table(name="user_roles")
-public class UserRole {
+public class UserRole implements Serializable  {
     
-    @Id
+	public UserRole() {}
+	
+    public UserRole(User user, String role) {
+		super();
+		this.userid = user.getUserid();
+		this.role = role;
+	}
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -2617299971732014940L;
+
+	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)    
     @Column(name="user_role_id")
     private Long userroleid;
@@ -18,7 +33,7 @@ public class UserRole {
     private String role;    
 
     public String getRole() {
-        return role;
+        return this.role;
     }
 
     public void setRole(String role) {
@@ -26,7 +41,7 @@ public class UserRole {
     }
 
     public Long getUserid() {
-        return userid;
+        return this.userid;
     }
 
     public void setUserid(Long userid) {
@@ -34,7 +49,7 @@ public class UserRole {
     }
 
     public Long getUserroleid() {
-        return userroleid;
+        return this.userroleid;
     }
 
     public void setUserroleid(Long userroleid) {

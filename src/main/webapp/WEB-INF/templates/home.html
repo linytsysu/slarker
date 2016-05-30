@@ -1,16 +1,220 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
     <head>
-    	<meta charset="UTF-8"/>
-        <title>Spring Security Example</title>
-        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.8/semantic.min.css"/>
+        <meta charset="UTF-8" />
+        <title>Slarker</title>
+        <link rel="stylesheet" type="text/css" href="libs/semantic-ui/semantic.min.css" />
+        <link rel="stylesheet" type="text/css" href="css/style.css" />
     </head>
     <body>
-        <h1>Welcome!</h1>
-        
-        <p>Click <a th:href="@{/hello}">here</a> to see a greeting.</p>
-
-        <script type="text/javascript" src="js/jquery-1.12.3.min.js"></script>
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.8/semantic.min.js"></script>
+        <div>
+            <div id="nav-bar">
+                <div class="nav-bar-body">
+                    <div class="nav-bar-left">
+                        <a class="nav-bar-element nav-bar-logo" href="/">Slarker</a>
+                      
+                        <div class="nav-bar-element nav-bar-menu">
+                            <ul>
+                                <li>
+                                    <a href="/">首页</a>
+                                </li>
+                                <li>
+                                    <a href="/">电影</a>
+                                </li>
+                          </ul>
+                        </div>
+                        <div class="clear"></div>
+                      
+                    </div>
+                  
+                    <div class="nav-bar-right">
+                        <div class="nav-bar-element nav-bar-search">
+                            <div class="ui search">
+                                <div class="ui icon input">
+                                    <input class="prompt" type="text" placeholder="Search countries..."/>
+                                    <i class="search icon"></i>
+                                </div>
+                                <div class="results"></div>
+                            </div>
+                        </div>
+                      
+                        <div class="nav-bar-element nav-bar-auth">
+                            <div th:if="${#authorization.expression('!isAuthenticated()')}">
+                                <i class="sign in icon"></i>
+                                <a href="/login">登录</a>
+                            </div>
+                            <div th:if="${#authorization.expression('isAuthenticated()')}">
+                                <div id="user-button">
+                                    <i class="user icon"></i>
+                                    <span sec:authentication="name">username</span>
+                                </div>
+                                <div class="user-panel">
+                                    <ul>
+                                        <li>
+                                            <i class="user icon"></i>
+                                            <a href="/user">个人信息</a>
+                                        </li>
+                                        <li>
+                                            <i class="sign out icon"></i>
+                                            <a href="/logout">退出</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                      
+                        <div class="clear"></div>
+                    </div>
+                  
+                    <div class="clear"></div>
+                </div>
+            </div>
+            
+            <div id="main-container">
+                <div class="main-content">
+                    <div class="header">
+                        正在热映
+                    </div>
+                    <div class="movie-style-block">
+                        <div class="block-keyword">影片类型</div>
+                        <ul>
+                            <li>
+                                <a href="#">动作</a>
+                            </li>
+                            <li>
+                                <a href="#">爱情</a>
+                            </li>
+                            <li>
+                                <a href="#">爱情</a>
+                            </li>
+                            <li>
+                                <a href="#">爱情</a>
+                            </li>
+                            <li>
+                                <a href="#">爱情</a>
+                            </li>
+                            <li>
+                                <a href="#">爱情</a>
+                            </li>
+                            <li>
+                                <a href="#">爱情</a>
+                            </li>
+                            <li>
+                                <a href="#">爱情</a>
+                            </li>
+                            <li>
+                                <a href="#">爱情</a>
+                            </li>
+                            <li>
+                                <a href="#">爱情</a>
+                            </li>
+                            <li>
+                                <a href="#">爱情</a>
+                            </li>
+                            <li>
+                                <a href="#">爱情</a>
+                            </li>
+                            <li>
+                                <a href="#">爱情</a>
+                            </li>
+                        </ul>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="movie-search-block">
+                        <div class="block-keyword">影片查询</div>
+                        <div class="movie-searcher">
+                            <div class="ui search">
+                                <div class="ui icon input">
+                                    <input class="prompt" type="text" placeholder="Search countries..."/>
+                                    <i class="search icon"></i>
+                                </div>
+                                <div class="results"></div>
+                            </div>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                    
+                    <div class="movies-container">
+                        <div class="movie-container">
+                            <div class="movie-poster">
+                                <img src="images/s_747af3c5_153f030b855__79af.jpg" alt="poster"/>
+                            </div>
+                            <div class="movie-information">
+                                <div class="movie-title-field">
+                                    <h3><a href="#">愤怒的小鸟</a></h3>
+                                    <span>8.7</span>
+                                </div>
+                                <div class="movie-field">
+                                    <p>类型：动画,喜剧,动作</p>
+                                    <p>语言：英语</p>
+                                    <p>片长：1小时37分钟</p>
+                                    <p>导演：费格尔·雷利 克雷·卡提斯</p>
+                                    <p>主演：杰森·苏戴奇斯 乔什·盖德 丹尼·麦克布耐德 玛娅·鲁道夫 彼特·丁拉基 比尔·哈德尔 吉甘-迈克尔·凯 吉奥弗瑞·阿伦德 托尼·海尔 吉丽安·贝尔</p>
+                                </div>
+                            </div>
+                            <div class="movie-button">
+                                <a href="#" class="link-button">选座购票</a>
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+                        <div class="movie-container">
+                            <div class="movie-poster">
+                                <img src="images/s_747af3c5_153f030b855__79af.jpg" alt="poster"/>
+                            </div>
+                            <div class="movie-information">
+                                <div class="movie-title-field">
+                                    <h3><a href="#">愤怒的小鸟</a></h3>
+                                    <span>8.7</span>
+                                </div>
+                                <div class="movie-field">
+                                    <p>类型：动画,喜剧,动作</p>
+                                    <p>语言：英语</p>
+                                    <p>片长：1小时37分钟</p>
+                                    <p>导演：费格尔·雷利 克雷·卡提斯</p>
+                                    <p>主演：杰森·苏戴奇斯 乔什·盖德 丹尼·麦克布耐德 玛娅·鲁道夫 彼特·丁拉基 比尔·哈德尔 吉甘-迈克尔·凯 吉奥弗瑞·阿伦德 托尼·海尔 吉丽安·贝尔</p>
+                                </div>
+                            </div>
+                            <div class="movie-button">
+                                <a href="#" class="link-button">选座购票</a>
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+                        <div class="movie-container">
+                            <div class="movie-poster">
+                                <img src="images/s_747af3c5_153f030b855__79af.jpg" alt="poster"/>
+                            </div>
+                            <div class="movie-information">
+                                <div class="movie-title-field">
+                                    <h3><a href="#">愤怒的小鸟</a></h3>
+                                    <span>8.7</span>
+                                </div>
+                                <div class="movie-field">
+                                    <p>类型：动画,喜剧,动作</p>
+                                    <p>语言：英语</p>
+                                    <p>片长：1小时37分钟</p>
+                                    <p>导演：费格尔·雷利 克雷·卡提斯</p>
+                                    <p>主演：杰森·苏戴奇斯 乔什·盖德 丹尼·麦克布耐德 玛娅·鲁道夫 彼特·丁拉基 比尔·哈德尔 吉甘-迈克尔·凯 吉奥弗瑞·阿伦德 托尼·海尔 吉丽安·贝尔</p>
+                                </div>
+                            </div>
+                            <div class="movie-button">
+                                <a href="#" class="link-button">选座购票</a>
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="right-sidebar">
+                    <div class="header">
+                        
+                    </div>
+                </div>
+                <div class="clear"></div>
+            </div>
+        </div>
+      
+        <script type="text/javascript" src="libs/jquery/jquery-1.12.3.min.js"></script>
+        <script type="text/javascript" src="libs/semantic-ui/semantic.min.js"></script>
+        <script type="text/javascript" src="js/main.js"></script>
     </body>
 </html>

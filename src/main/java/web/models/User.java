@@ -9,31 +9,54 @@ import javax.persistence.*;
 @Table(name = "users")
 public class User implements Serializable {
 	
-	private static final long serialVersionUID = 1L;
-    
-    @Id
+//	public enum Gender{MALE, FEMALE;}
+
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 8674174402833822981L;
+
+	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)    
     @Column(name="userid")
     private Long userId;
 
     @Column(name = "username")
-    private String userName;   
+    private String userName;
 
-    @Column(name = "password")
-    private String password;   
+    @Column(name = "password", length=100)
+    private String password;
 
     @Column(name = "email")
     private String email;
+
+//    @Column(name = "realName")
+//    private String realName;
+//    
+//    @Column(name = "gender")
+//    private Gender gender;
+//    
+//    @Column(name = "phoneNumber")
+//    private String phoneNumber;
     
     public User() { }
     
-    public User(User user) {
-            this.userId = user.userId;
-            this.userName = user.userName;
-            this.email = user.email; 
-            this.password = user.password;  
+    public User(String username, String password, String email) {
+            this.userName = username;
+            this.email = email; 
+            this.password = password; 
+//            this.realName = realName;
+//            this.gender = gender;
+//            this.phoneNumber = phoneNumber;
     }
-
+    
+    public User(User user) {
+    	this.userId = user.userId;
+        this.userName = user.userName;
+        this.email = user.email; 
+        this.password = user.password;  
+    }
+    
     public Long getUserid() {
         return userId;
     }
@@ -65,7 +88,29 @@ public class User implements Serializable {
     public void setUserName(String userName) {
         this.userName = userName;
     }
-    
-    
+
+//	public String getRealName() {
+//		return realName;
+//	}
+//
+//	public void setRealName(String realName) {
+//		this.realName = realName;
+//	}
+//
+//	public Gender getGender() {
+//		return gender;
+//	}
+//
+//	public void setGender(Gender gender) {
+//		this.gender = gender;
+//	}
+//
+//	public String getPhoneNumber() {
+//		return phoneNumber;
+//	}
+//
+//	public void setPhoneNumber(String phoneNumber) {
+//		this.phoneNumber = phoneNumber;
+//	}
   
 }
