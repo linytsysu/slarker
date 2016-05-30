@@ -7,6 +7,11 @@ import javax.persistence.*;
 @Entity
 @Table(name = "RegionCode")
 public class Region implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -2770440236805096170L;
+
 	@Id
 	@Column(name = "code")
 	private String code;

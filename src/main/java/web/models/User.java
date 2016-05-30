@@ -10,10 +10,13 @@ import javax.persistence.*;
 public class User implements Serializable {
 	
 //	public enum Gender{MALE, FEMALE;}
-	
-	private static final long serialVersionUID = 1L;
 
-    @Id
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 8674174402833822981L;
+
+	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)    
     @Column(name="userid")
     private Long userId;
@@ -21,7 +24,7 @@ public class User implements Serializable {
     @Column(name = "username")
     private String userName;   
 
-    @Column(name = "password")
+    @Column(name = "password", length=100)
     private String password;
 
     @Column(name = "email")

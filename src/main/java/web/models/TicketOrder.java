@@ -8,11 +8,15 @@ import java.util.List;
 
 import javax.persistence.*;
 
-import utils.SlkUtil;
 
 @Entity
 @Table(name = "TicketOrder")
 public class TicketOrder implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -7176047837465838418L;
+
 	public enum OrderStatus {UNPAID, PAID, CLOSED;}
 	
 	@Id
@@ -20,16 +24,16 @@ public class TicketOrder implements Serializable {
 	@Column(name = "orderId")
 	private Long orderId;
 	
-	@OneToOne(cascade = CascadeType.ALL)
+	@ManyToOne
 	@JoinColumn(name = "movieSceneId")
 	private MovieScene movieScene;
 	
-	@OneToOne(cascade = CascadeType.ALL)
+	@ManyToOne
 	@JoinColumn(name = "userId")
 	private User user;
 	
 	@ElementCollection
-	@Column(name = "orderedSeatInfos")
+	@Column(name = "orderedSeatInfos", length=1000)
 	private List<SeatInfo> orderedSeatInfos;
 	
 	@Temporal(TemporalType.DATE)
@@ -39,13 +43,12 @@ public class TicketOrder implements Serializable {
 	@Column(name = "orderStatus")
 	private OrderStatus orderStatus;
 	
-	@SuppressWarnings("unchecked")
 	public TicketOrder(MovieScene movie_scene_1, User user_1, List<SeatInfo> avail_seat_1, Calendar createDate) {
 		// TODO Auto-generated constructor stub
-		this.movieScene = (MovieScene) SlkUtil.deepClone(movie_scene_1);
-		this.user = (User) SlkUtil.deepClone(user_1);
-		this.orderedSeatInfos = (List<SeatInfo>)SlkUtil.deepClone(avail_seat_1);
-		this.createdDate = (Calendar) SlkUtil.deepClone(createDate);
+		this.movieScene = movie_scene_1;
+		this.user = user_1;
+		this.orderedSeatInfos = avail_seat_1;
+		this.createdDate = createDate;
 		this.orderStatus = OrderStatus.UNPAID;
 		
 		for (SeatInfo seat_info : orderedSeatInfos) {
@@ -66,7 +69,7 @@ public class TicketOrder implements Serializable {
 	}
 
 	public void setMovieScene(MovieScene movieScene) {
-		this.movieScene = (MovieScene) SlkUtil.deepClone(movieScene);
+		this.movieScene = movieScene;
 	}
 
 	public User getUser() {
@@ -74,16 +77,15 @@ public class TicketOrder implements Serializable {
 	}
 
 	public void setUser(User user) {
-		this.user = (User) SlkUtil.deepClone(user);
+		this.user = user;
 	}
 
 	public List<SeatInfo> getOrderedSeatInfos() {
 		return orderedSeatInfos;
 	}
 
-	@SuppressWarnings("unchecked")
 	public void setOrderedSeatInfos(List<SeatInfo> orderedSeatInfos) {
-		this.orderedSeatInfos = (List<SeatInfo>) SlkUtil.deepClone(orderedSeatInfos);
+		this.orderedSeatInfos = orderedSeatInfos;
 	}
 
 	public Calendar getCreatedDate() {
@@ -91,7 +93,7 @@ public class TicketOrder implements Serializable {
 	}
 
 	public void setCreatedDate(Calendar createdDate) {
-		this.createdDate = (Calendar) SlkUtil.deepClone(createdDate);
+		this.createdDate = createdDate;
 	}
 
 	public OrderStatus getOrderStatus() {

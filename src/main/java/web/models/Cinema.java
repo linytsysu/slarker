@@ -4,12 +4,14 @@ package web.models;
 import java.io.Serializable;
 import javax.persistence.*;
 
-import ch.qos.logback.classic.pattern.Util;
-import utils.SlkUtil;
-
 @Entity
 @Table(name = "Cinema") 
 public class Cinema implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 7292557641715930695L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -18,8 +20,8 @@ public class Cinema implements Serializable {
 	
 	@Column(name = "cinemaName")
 	private String cinemaName;
-	
-	@OneToOne(cascade = CascadeType.ALL)
+
+	@ManyToOne
 	@JoinColumn(name = "code")
 	private Region region;
 	
@@ -31,7 +33,7 @@ public class Cinema implements Serializable {
 	public Cinema(String cinemaName, Region region, String detailedAddress) {
 		super();
 		this.cinemaName = cinemaName;
-		this.region = (Region)SlkUtil.deepClone(region);
+		this.region = region;
 		this.detailedAddress = detailedAddress;
 	}
 	
@@ -64,7 +66,7 @@ public class Cinema implements Serializable {
 	}
 
 	public void setRegion(Region region) {
-		this.region = (Region)SlkUtil.deepClone(region);
+		this.region = region;
 	}
 	
 	

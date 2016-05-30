@@ -6,19 +6,23 @@ import java.util.List;
 
 import javax.persistence.*;
 
-import utils.SlkUtil;
 
 @Entity
 @Table(name = "SceneSeatInfo")
 public class SceneSeatInfo implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -6499777864815854777L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "sceneSeatInfoId")
 	private long sceneSeatInfoId;
 	
 	@ElementCollection
-	@Column(name = "seatInfos")
+	@Column(name = "seatInfos", length=1000)
 	private List<SeatInfo> seatInfos;
 
 	public SceneSeatInfo(HallSeatStructure hallSeatStructure) {
@@ -29,6 +33,7 @@ public class SceneSeatInfo implements Serializable {
 			SeatInfo seatInfo = new SeatInfo(seat);
 			seatInfos.add(seatInfo);
 		}
+		System.out.println(this.seatInfos.size());
 	}
 
 	public long getSceneSeatInfoId() {
@@ -43,9 +48,8 @@ public class SceneSeatInfo implements Serializable {
 		return seatInfos;
 	}
 
-	@SuppressWarnings("unchecked")
 	public void setSeatInfos(List<SeatInfo> seatInfos) {
-		this.seatInfos = (List<SeatInfo>)SlkUtil.deepClone(seatInfos);
+		this.seatInfos = seatInfos;
 	}
 
 	public List<SeatInfo> getAvailSeatRandom(double probability) {

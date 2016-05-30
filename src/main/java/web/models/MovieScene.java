@@ -7,18 +7,25 @@ import java.util.List;
 
 import javax.persistence.*;
 
-import utils.SlkUtil;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import web.repositories.SceneSeatInfoRepository;
 
 @Entity
 @Table(name = "MovieScene")
 public class MovieScene implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 164618211094423855L;
+
 
 	public MovieScene(Calendar calendar, double price, Movie movie, VideoHall videoHall) {
 		super();
-		this.calendar = (Calendar)SlkUtil.deepClone(calendar);
+		this.calendar = calendar;
 		this.price = price;
-		this.movie = (Movie) SlkUtil.deepClone(movie);
-		this.videoHall = (VideoHall) SlkUtil.deepClone(videoHall);
+		this.movie = movie;
+		this.videoHall = videoHall;
 		
 		this.sceneSeatInfo = new SceneSeatInfo(videoHall.getHallSeatStructure());
 	}
@@ -36,15 +43,15 @@ public class MovieScene implements Serializable {
 	@Column(name = "price")
 	private double price;
 	
-	@OneToOne(cascade = CascadeType.ALL)
+	@ManyToOne
 	@JoinColumn(name = "movieId")
 	private Movie movie;
 
-	@OneToOne(cascade = CascadeType.ALL)
+	@ManyToOne
 	@JoinColumn(name = "videoHallId")
 	private VideoHall videoHall;
 
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne
 	@JoinColumn(name = "sceneSeatInfoId")
 	private SceneSeatInfo sceneSeatInfo;
 	
@@ -62,7 +69,7 @@ public class MovieScene implements Serializable {
 	}
 
 	public void setMovie(Movie movie) {
-		this.movie = (Movie) SlkUtil.deepClone(movie);
+		this.movie = movie;
 	}
 
 	public VideoHall getVideoHall() {
@@ -70,7 +77,7 @@ public class MovieScene implements Serializable {
 	}
 
 	public void setVideoHall(VideoHall videoHall) {
-		this.videoHall = (VideoHall) SlkUtil.deepClone(videoHall);
+		this.videoHall = videoHall;
 	}
 
 	public SceneSeatInfo getSceneSeatInfo() {
@@ -78,7 +85,7 @@ public class MovieScene implements Serializable {
 	}
 
 	public void setSceneSeatInfo(SceneSeatInfo sceneSeatInfo) {
-		this.sceneSeatInfo = (SceneSeatInfo) SlkUtil.deepClone(sceneSeatInfo);
+		this.sceneSeatInfo = sceneSeatInfo;
 	}
 
 	public Long getMovieSceneId() {
@@ -94,7 +101,7 @@ public class MovieScene implements Serializable {
 	}
 
 	public void setBeginDate(Calendar calendar) {
-		this.calendar = (Calendar) SlkUtil.deepClone(calendar);
+		this.calendar = calendar;
 	}
 	
 	public List<SeatInfo> getAvailSeatRandom(double probability) {

@@ -7,27 +7,30 @@ import java.util.List;
 
 import javax.persistence.*;
 
-import utils.SlkUtil;
 
 @Entity
 @Table(name = "Movie")
 public class Movie implements Serializable {
 	
-	@SuppressWarnings("unchecked")
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 5046320505351582223L;
+
 	public Movie(String name, List<String> directors, List<String> actors, String poster, List<String> type,
 			String country, String language, String duration, Calendar releaseTime, List<String> version, double star,
 			String backgroundImage) {
 		super();
 		this.name = name;
-		this.directors = (List<String>)SlkUtil.deepClone(directors);
-		this.actors = (List<String>)SlkUtil.deepClone(actors);
+		this.directors = directors;
+		this.actors = actors;
 		this.poster = poster;
-		this.type = (List<String>)SlkUtil.deepClone(type);
+		this.type = type;
 		this.country = country;
 		this.language = language;
 		this.duration = duration;
-		this.releaseTime = (Calendar) SlkUtil.deepClone(releaseTime);
-		this.version = (List<String>)SlkUtil.deepClone(version);
+		this.releaseTime = releaseTime;
+		this.version = version;
 		this.star = star;
 		this.backgroundImage = backgroundImage;
 	}
@@ -98,18 +101,16 @@ public class Movie implements Serializable {
 		return directors;
 	}
 
-	@SuppressWarnings("unchecked")
 	public void setDirectors(List<String> directors) {
-		this.directors = (List<String>)SlkUtil.deepClone(directors);
+		this.directors = directors;
 	}
 
 	public List<String> getActors() {
 		return actors;
 	}
 
-	@SuppressWarnings("unchecked")
 	public void setActors(List<String> actors) {
-		this.actors = (List<String>)SlkUtil.deepClone(actors);
+		this.actors = actors;
 	}
 
 	public String getPoster() {
@@ -124,9 +125,8 @@ public class Movie implements Serializable {
 		return type;
 	}
 
-	@SuppressWarnings("unchecked")
 	public void setType(List<String> type) {
-		this.type = (List<String>)SlkUtil.deepClone(type);
+		this.type = type;
 	}
 
 	public String getCountry() {
@@ -158,16 +158,15 @@ public class Movie implements Serializable {
 	}
 
 	public void setReleaseTime(Calendar releaseTime) {
-		this.releaseTime = (Calendar) SlkUtil.deepClone(releaseTime);
+		this.releaseTime = releaseTime;
 	}
 
 	public List<String> getVersion() {
 		return version;
 	}
 
-	@SuppressWarnings("unchecked")
 	public void setVersion(List<String> version) {
-		this.version = (List<String>)SlkUtil.deepClone(version);
+		this.version = version;
 	}
 
 	public double getStar() {

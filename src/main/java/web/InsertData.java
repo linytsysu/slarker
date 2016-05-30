@@ -6,6 +6,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import javax.annotation.Resource;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +24,7 @@ import web.models.Seat;
 import web.models.SeatInfo;
 import web.models.TicketOrder;
 import web.models.User;
+import web.models.UserRole;
 import web.models.VideoHall;
 import web.repositories.CinemaRepository;
 import web.repositories.HallSeatStructureRepository;
@@ -29,7 +32,9 @@ import web.repositories.MovieRepository;
 import web.repositories.MovieSceneRepository;
 import web.repositories.OrderRepository;
 import web.repositories.RegionRepository;
+import web.repositories.SceneSeatInfoRepository;
 import web.repositories.UserRepository;
+import web.repositories.UserRoleRepository;
 import web.repositories.VideoHallRepository;
 
 
@@ -59,28 +64,43 @@ public class InsertData implements ApplicationListener<ContextRefreshedEvent> {
 	VideoHallRepository video_hall_repo;
 	
 	@Autowired
-	OrderRepository order_repo;
-	
+	SceneSeatInfoRepository scene_seat_info_repo;
 	
 	@Autowired
+	UserRoleRepository user_role_repo;
+	
+	@Autowired
+	OrderRepository order_repo;
+	
+	@Resource(name = "passwordEncoder")
 	PasswordEncoder passwordEncoder;
 	
 	
 	@Override
 	public void onApplicationEvent(ContextRefreshedEvent arg0) {
 		// TODO Auto-generated method stub
-		if (region_repo.count() > 0) return;	// count > 0 means mysql database has been inserted data.
+//		if (region_repo.count() > 0) return;	// count > 0 means mysql database has been inserted data.
 		
 		// if mysql database has not been inserted data. Do the following action!
+		
+//		cinema_repo.deleteAll();
+//		region_repo.deleteAll();
+//		movie_repo.deleteAll();
+//		movie_scene_repo.deleteAll();
+//		user_repo.deleteAll();
+//		hall_seat_struct_repo.deleteAll();
+//		video_hall_repo.deleteAll();
+//		scene_seat_info_repo.deleteAll();
+//		order_repo.deleteAll();
 		
 		// insert region info into Table Region.
 		// new PanYa district and BaiYun district.
 		Region region_panyu = new Region("440113", "番禺区", "广州市");
 		Region region_baiyun = new Region("440111", "白云区", "广州市");
 		Region region_tianhe = new Region("440106", "天河区", "广州市");
-		region_panyu = region_repo.save(region_panyu);
-		region_baiyun = region_repo.save(region_baiyun);
-		region_tianhe = region_repo.save(region_tianhe);
+		region_repo.save(region_panyu);
+		region_repo.save(region_baiyun);
+		region_repo.save(region_tianhe);
 		
 		// new Cinema jinyi,wanda,feiyang and jiahe.
 		Cinema cinema_jinyi = new Cinema("金逸影珠江-广州大学城店", region_panyu, "小谷围街贝岗村中二横路1号高高新天地商业广场三层第3A028号");
@@ -231,34 +251,42 @@ public class InsertData implements ApplicationListener<ContextRefreshedEvent> {
 		Calendar calendar_1 = Calendar.getInstance();
 		calendar_1.set(2016, 5, 29, 13, 10);
 		MovieScene movie_scene_1 = new MovieScene(calendar_1, 64, movie_1, video_hall_jinyi_1);
+		scene_seat_info_repo.save(movie_scene_1.getSceneSeatInfo());
 		
 		Calendar calendar_2 = Calendar.getInstance();
 		calendar_2.set(2016, 5, 29, 13, 40);
 		MovieScene movie_scene_2 = new MovieScene(calendar_2, 64, movie_1, video_hall_jinyi_2);
+		scene_seat_info_repo.save(movie_scene_2.getSceneSeatInfo());
 		
 		Calendar calendar_3 = Calendar.getInstance();
 		calendar_3.set(2016, 6, 30, 14, 20);
 		MovieScene movie_scene_3 = new MovieScene(calendar_3, 64, movie_2, video_hall_wanda_2);
+		scene_seat_info_repo.save(movie_scene_3.getSceneSeatInfo());
 		
 		Calendar calendar_4 = Calendar.getInstance();
 		calendar_4.set(2016, 6, 30, 13, 5);
 		MovieScene movie_scene_4 = new MovieScene(calendar_4, 32, movie_3, video_hall_wanda_3);
+		scene_seat_info_repo.save(movie_scene_4.getSceneSeatInfo());
 		
 		Calendar calendar_5 = Calendar.getInstance();
 		calendar_5.set(2016, 6, 30, 15, 40);
 		MovieScene movie_scene_5 = new MovieScene(calendar_5, 56, movie_3, video_hall_feiyang_6);
+		scene_seat_info_repo.save(movie_scene_5.getSceneSeatInfo());
 		
 		Calendar calendar_6 = Calendar.getInstance();
 		calendar_6.set(2016, 7, 1, 10, 50);
 		MovieScene movie_scene_6 = new MovieScene(calendar_6, 64, movie_2, video_hall_feiyang_8);
+		scene_seat_info_repo.save(movie_scene_6.getSceneSeatInfo());
 		
 		Calendar calendar_7 = Calendar.getInstance();
 		calendar_7.set(2016, 7, 2, 11, 55);
 		MovieScene movie_scene_7 = new MovieScene(calendar_7, 64, movie_2, video_hall_jiahe_5);
+		scene_seat_info_repo.save(movie_scene_7.getSceneSeatInfo());
 		
 		Calendar calendar_8 = Calendar.getInstance();
 		calendar_8.set(2016, 7, 3, 18, 30);
 		MovieScene movie_scene_8 = new MovieScene(calendar_8, 64, movie_4, video_hall_jiahe_5);
+		scene_seat_info_repo.save(movie_scene_8.getSceneSeatInfo());
 		
 		movie_scene_repo.save(movie_scene_1);
 		movie_scene_repo.save(movie_scene_2);
@@ -281,6 +309,19 @@ public class InsertData implements ApplicationListener<ContextRefreshedEvent> {
 		user_repo.save(user_3);
 		user_repo.save(user_4);
 		user_repo.save(user_5);
+		
+		// new UserRole
+		UserRole user_role_1 = new UserRole(user_1, "ROLE_USER");
+		UserRole user_role_2 = new UserRole(user_2, "ROLE_USER");
+		UserRole user_role_3 = new UserRole(user_3, "ROLE_USER");
+		UserRole user_role_4 = new UserRole(user_4, "ROLE_USER");
+		UserRole user_role_5 = new UserRole(user_5, "ROLE_USER");
+		
+		user_role_repo.save(user_role_1);
+		user_role_repo.save(user_role_2);
+		user_role_repo.save(user_role_3);
+		user_role_repo.save(user_role_4);
+		user_role_repo.save(user_role_5);
 		
 		// new TicketOrder
 		List<SeatInfo> avail_seat_1 = movie_scene_1.getAvailSeatRandom(0.02);
@@ -319,6 +360,7 @@ public class InsertData implements ApplicationListener<ContextRefreshedEvent> {
 		order_repo.save(ticket_order_2);
 		order_repo.save(ticket_order_3);
 		order_repo.save(ticket_order_4);
+		
 		
 		System.out.println("Insert data done!");
 	}

@@ -2,10 +2,14 @@ package web.models;
 
 import java.io.Serializable;
 
-import utils.SlkUtil;
 import web.models.Seat;
 
 public class SeatInfo implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 7652508700744297756L;
+
 	public enum Status{OPTIONAL, OPTIONED, NOT_OPTIONAL, MAINTAINING;}
 	
 	private Status status;
@@ -15,7 +19,7 @@ public class SeatInfo implements Serializable {
 	public SeatInfo(Seat seat) {
 		// TODO Auto-generated constructor stub
 //		this.seat = new Seat(seat);
-		this.seat = (Seat) SlkUtil.deepClone(seat);
+		this.seat = seat;
 		this.status = Status.OPTIONAL;
 	}
 

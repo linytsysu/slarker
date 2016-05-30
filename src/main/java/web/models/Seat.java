@@ -5,6 +5,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Seat implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 8705772480859972653L;
 	private int logicRow;
 	private int logicCol;
 	private int seatRow;
