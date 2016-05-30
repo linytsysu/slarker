@@ -19,10 +19,10 @@ public class User implements Serializable {
     private Long userId;
 
     @Column(name = "username")
-    private String userName;   
+    private String userName;
 
     @Column(name = "password")
-    private String password;   
+    private String password;
 
     @Column(name = "email")
     private String email;

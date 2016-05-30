@@ -9,6 +9,11 @@ import javax.persistence.*;
 @Entity
 @Table(name = "Order")
 public class Order implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	public enum OrderStatus{UNPAID, PAID, CLOSED;}
 	
 	@Id

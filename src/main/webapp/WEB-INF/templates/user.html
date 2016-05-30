@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Slarker</title>
+        <link rel="stylesheet" type="text/css" href="libs/semantic-ui/semantic.min.css" />
+        <link rel="stylesheet" type="text/css" href="css/style.css" />
+    </head>
+    <body>
+        <div>
+            <div id="nav-bar">
+                <div class="nav-bar-body">
+                    <div class="nav-bar-left">
+                        <a class="nav-bar-element nav-bar-logo" href="/">Slarker</a>
+                      
+                        <div class="nav-bar-element nav-bar-menu">
+                            <ul>
+                                <li>
+                                    <a href="/">首页</a>
+                                </li>
+                                <li>
+                                    <a href="/">电影</a>
+                                </li>
+                          </ul>
+                        </div>
+                        <div class="clear"></div>
+                      
+                    </div>
+                  
+                    <div class="nav-bar-right">
+                        <div class="nav-bar-element nav-bar-search">
+                            <div class="ui search">
+                                <div class="ui icon input">
+                                    <input class="prompt" type="text" placeholder="Search countries..."/>
+                                    <i class="search icon"></i>
+                                </div>
+                                <div class="results"></div>
+                            </div>
+                        </div>
+                      
+                        <div class="nav-bar-element nav-bar-auth">
+                            <div th:if="${#authorization.expression('!isAuthenticated()')}">
+                                <i class="sign in icon"></i>
+                                <a href="/login">登录</a>
+                            </div>
+                            <div th:if="${#authorization.expression('isAuthenticated()')}">
+                                <div id="user-button">
+                                    <i class="user icon"></i>
+                                    <span sec:authentication="name">username</span>
+                                </div>
+                                <div class="user-panel">
+                                    <ul>
+                                        <li>
+                                            <i class="user icon"></i>
+                                            <a href="/user">个人信息</a>
+                                        </li>
+                                        <li>
+                                            <i class="sign out icon"></i>
+                                            <a href="/logout">退出</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                      
+                        <div class="clear"></div>
+                    </div>
+                  
+                    <div class="clear"></div>
+                </div>
+            </div>
+            
+            <div id="main-container">
+                <div class="user-sidebar">
+                    <div class="user-profile">
+                        <img id="profile-image" src="images/default_head.png" alt="image"/>
+                        <p>priya</p>
+                    </div>
+                    <div class="user-info-menu">
+                        <h4>
+                            我的账户
+                        </h4>
+                        <ul>
+                            <li id="user-details-link" class="user-link-chosen">个人资料</li>
+                            <li id="user-edit-link">修改资料</li>
+                        </ul>
+                    </div>
+                    <div class="user-info-menu">
+                        <h4>
+                            我的订单
+                        </h4>
+                        <ul>
+                            <li id="user-orders-link">我的订单</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="user-content">
+                    <div id="user-details" class="user-content-shown">
+                        个人资料
+                    </div>
+                    <div id="user-edit">
+                        修改资料
+                    </div>
+                    <div id="user-orders">
+                        我的订单
+                    </div>
+                </div>
+                <div class="clear"></div>
+            </div>
+        </div>
+      
+        <script type="text/javascript" src="libs/jquery/jquery-1.12.3.min.js"></script>
+        <script type="text/javascript" src="libs/semantic-ui/semantic.min.js"></script>
+        <script type="text/javascript" src="js/main.js"></script>
+    </body>
+</html>

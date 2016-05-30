@@ -8,6 +8,11 @@ import javax.persistence.*;
 @Entity
 @Table(name = "CityTown")
 public class CityTown implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@Column(name = "city")
 	private String city;
