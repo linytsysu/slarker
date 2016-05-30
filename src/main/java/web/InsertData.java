@@ -82,16 +82,18 @@ public class InsertData implements ApplicationListener<ContextRefreshedEvent> {
 //		if (region_repo.count() > 0) return;	// count > 0 means mysql database has been inserted data.
 		
 		// if mysql database has not been inserted data. Do the following action!
-		
-//		cinema_repo.deleteAll();
-//		region_repo.deleteAll();
-//		movie_repo.deleteAll();
-//		movie_scene_repo.deleteAll();
-//		user_repo.deleteAll();
-//		hall_seat_struct_repo.deleteAll();
-//		video_hall_repo.deleteAll();
-//		scene_seat_info_repo.deleteAll();
-//		order_repo.deleteAll();
+
+		// Tables should be deleted in order
+		order_repo.deleteAll();
+		movie_scene_repo.deleteAll();
+		video_hall_repo.deleteAll();
+		cinema_repo.deleteAll();
+		region_repo.deleteAll();
+		hall_seat_struct_repo.deleteAll();
+		movie_repo.deleteAll();
+		scene_seat_info_repo.deleteAll();
+		user_role_repo.deleteAll();
+		user_repo.deleteAll();
 		
 		// insert region info into Table Region.
 		// new PanYa district and BaiYun district.
