@@ -57,6 +57,7 @@ public class ServletConfig extends WebMvcConfigurerAdapter {
         registry.addResourceHandler("/css/**").addResourceLocations("/css/");
         registry.addResourceHandler("/fonts/**").addResourceLocations("/fonts/");
         registry.addResourceHandler("/js/**").addResourceLocations("/js/");
+        registry.addResourceHandler("/libs/**").addResourceLocations("/libs/");
     }
     
     // Initiate an Object when Starting application.
