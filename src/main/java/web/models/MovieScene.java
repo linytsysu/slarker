@@ -20,8 +20,6 @@ public class MovieScene implements Serializable {
 	private static final long serialVersionUID = 164618211094423855L;
 
 
-	public MovieScene() {}
-	
 	public MovieScene(Calendar calendar, double price, Movie movie, VideoHall videoHall) {
 		super();
 		this.calendar = calendar;
