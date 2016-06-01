@@ -30,7 +30,8 @@ public class MovieController {
     @RequestMapping("/movie/{movieid}")
     public String thymeleaf(@RequestParam(value="name", required=false, defaultValue="World") String name, Model model) {
     	List<Movie> movies =  (List<Movie>) movie_repo.findAll();
-    	
+    	Movie movie = movies.get(0);
+        model.addAttribute("movie",movie);
     	// model.addAttribute("movies", movies);
     	
     	return "movie";

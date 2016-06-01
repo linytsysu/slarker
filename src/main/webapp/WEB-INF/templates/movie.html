@@ -14,7 +14,9 @@
     <!--主体界面-->
     <body>
         <!--上部顶栏-->
-    <div id = "header" class="container">
+    <div id = "header" class="container" style="background:url(http://img5.gewara.com/images/movie/201604/s_284b4b30_1540e510604__7fca.jpg) #fcfcfc center top no-repeat;background-size:100%;"
+        th:style="|background:url(/images/${movie.backgroundImage}) #fcfcfc center top no-repeat;background-size:100%;|"
+    >
             <!--上部菜单，也就是顶部菜单栏-->
             <div class="ui large secondary  menu">
                 <div class="item">
@@ -22,7 +24,7 @@
                 </div>
                 <div class="item">
                     <div id = "selectdrop" class="ui dropdown">
-                    <div class="text">选择城市</div>
+                    <div style="color:#fff;" class="text">选择城市</div>
                     <i class="dropdown icon"></i>
                     <div class="menu">
                         <div class="item">
@@ -34,10 +36,10 @@
                     </div>
                     </div>
                 </div>
-                <a class="item">
+                <a href="/home" class="item">
                     <i class="home icon"></i>
                 </a>
-                <a class="item">
+                <a href="/home" class="item">
                     电影首页
                 </a>
                 <a class="item">
@@ -70,11 +72,11 @@
             <!--下部信息，也就是左下角的影片名字-->
             <div id = "header_bottom">
                 <div id="left_bottom">
-                    <h1 class="ui header">愤怒的小鸟 <div class="sub header">Angry Bird</div>
+                    <h1 style="color:#fff;" class="ui header" th:text="${movie.name}">愤怒的小鸟 <div class="sub header" th:text="${movie.name}">Angry Bird</div>
                     </h1>
                     <div class = "item">
                         <div class="meta">
-                        <a class="like"><i class="like icon"></i> 41 Likes </a>
+                        <a class="like"><i class="like icon" th:text="|&nbsp;&nbsp;${movie.star}&nbsp;Likes|"></i></a>
                     </div>
                     </div>
                 </div>
@@ -88,43 +90,38 @@
         <div id = "container" class = "container">
             <!--左侧电影封面-->
             <div id = "left_container">
-                <img class="ui medium rounded image" style="width:270px;height:360px;max-width:270px;" src="http://img5.gewara.com/cw270h360/images/movie/201605/s_6e62e7d_1549f7abdfd__7d7c.jpg"/>
+                <img class="ui medium rounded image" style="width:270px;height:360px;max-width:270px;" src="http://img5.gewara.com/cw270h360/images/movie/201605/s_6e62e7d_1549f7abdfd__7d7c.jpg"
+                th:src="|/images/${movie.poster}|"
+                />
             </div>
             <!--中间电影详细信息-->
             <div id = "mid_container">
                 <div class="ui vertical segment">
-                <p>导演：费格尔·雷利 克雷·卡提斯</p>
+                <p th:text="|影片:&nbsp;${movie.name}|">影片:&nbsp;</p>
                 </div>
+
                 <div class="ui vertical segment">
-                <p>主演：费格尔·雷利 克雷·卡提斯</p>
+                <p>导演:&nbsp;<span th:each="director : ${movie.directors}"><span th:text="|${director}&nbsp;&nbsp;|">导演：费格尔·雷利 克雷·卡提斯</span></span></p>
+                </div>
+
+                <div class="ui vertical segment">
+                <p>主演:&nbsp;<span th:each="actor : ${movie.actors}"><span th:text="|${actor}&nbsp;&nbsp;|">主演：费格尔·雷利 克雷·卡提斯</span></span></p>
+                </div>
+
+                <div class="ui vertical segment">
+                <p>
+                    <p>类型：&nbsp;<span th:each="t : ${movie.type}"><span th:text="|${t}&nbsp;&nbsp;|">类型：魔幻</span></span></p>
+                    <p>特效：&nbsp;<span th:each="ver : ${movie.version}"><span th:text="|${ver}&nbsp;&nbsp;|">主演：费格尔·雷利 克雷·卡提斯</span></span></p>
+                    <p>时长：&nbsp;<span th:text="|${movie.duration}&nbsp;&nbsp;|">时长：170分钟</span></p>
+                    <p>语言：&nbsp;<span th:text="|${movie.language}&nbsp;&nbsp;|">语言：英语</span></p>
+                </p>
+                </div>
+
                 
-                </div>
-                <div class="ui vertical segment">
-                <p>详细信息：动画|170分钟</p>
-                </div>
-                <div class="ui vertical segment">
-                <p>关注和购票</p>
-                </div>
+
+                
             </div>
-            <!--右侧，感觉冗余，建议删除-->
-            <div id = "right_container">
-                <div class="ui two card">
-                <div class="card">
-                    <div class="content">
-                    <div class="header">正佳飞扬影城</div>
-                    <div class="description">5-22</div>
-                    </div>
-                    <div class="ui bottom attached button"><i class="add icon"></i> ￥49起 </div>
-                </div>
-                <div class="card">
-                    <div class="content">
-                    <div class="header">正佳飞扬影城</div>
-                    <div class="description">5-22</div>
-                    </div>
-                    <div class="ui bottom attached button"><i class="add icon"></i> ￥49起 </div>
-                </div>
-                </div>            
-            </div>
+            
         </div>
 
         <!--遮罩，侧栏弹出时遮挡背景-->
