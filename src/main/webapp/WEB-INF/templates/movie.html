@@ -1,0 +1,339 @@
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+    <head>
+        <meta charset="UTF-8"/>
+        <title>电影页面</title>
+        <link rel="stylesheet" type="text/css" href="/libs/semantic-ui/semantic.min.css" />
+        <link rel="stylesheet" type="text/css" href="/css/index.css"/>
+        <script type="text/javascript" src="/libs/jquery/jquery-1.12.3.min.js"></script>
+        <script type="text/javascript" src="/libs/semantic-ui/semantic.min.js"></script>
+        <script src="/js/index.js"></script>
+    </head>
+
+    <!--主体界面-->
+    <body>
+        <!--上部顶栏-->
+    <div id = "header" class="container" style="background:url(http://img5.gewara.com/images/movie/201604/s_284b4b30_1540e510604__7fca.jpg) #fcfcfc center top no-repeat;background-size:100%;"
+        th:style="|background:url(/images/${movie.backgroundImage}) #fcfcfc center top no-repeat;background-size:100%;|"
+    >
+            <!--上部菜单，也就是顶部菜单栏-->
+            <div class="ui large secondary  menu">
+                <div class="item">
+                    <img src="/images/logo.png"/>
+                </div>
+                <div class="item">
+                    <div id = "selectdrop" class="ui dropdown">
+                    <div style="color:#fff;" class="text">选择城市</div>
+                    <i class="dropdown icon"></i>
+                    <div class="menu">
+                        <div class="item">
+                        广州
+                        </div>
+                        <div class="item">
+                        珠海
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                <a href="/home" class="item">
+                    <i class="home icon"></i>
+                </a>
+                <a href="/home" class="item">
+                    电影首页
+                </a>
+                <a class="item">
+                    热映电影
+                </a>
+                <a class="item">
+                    即将上映
+                </a>
+                <a class="item">
+                    电影院
+                </a>
+                <a class="item">
+                    活动
+                </a>
+                <a class="item">
+                    社区
+                </a>
+                <div class="right menu">
+                    <div class="item">
+                        <img class="ui avatar image" src="/images/default_head.png"/>
+                    </div>
+                    <a class="item">
+                    登陆
+                    </a>
+                    <a class="item">
+                    注册
+                    </a>
+                </div>
+            </div>
+            <!--下部信息，也就是左下角的影片名字-->
+            <div id = "header_bottom">
+                <div id="left_bottom">
+                    <h1 style="color:#fff;" class="ui header" th:text="${movie.name}">愤怒的小鸟 <div class="sub header" th:text="${movie.name}">Angry Bird</div>
+                    </h1>
+                    <div class = "item">
+                        <div class="meta">
+                        <a class="like"><i class="like icon" th:text="|&nbsp;&nbsp;${movie.star}&nbsp;Likes|"></i></a>
+                    </div>
+                    </div>
+                </div>
+            </div>
+            <!--选票按钮-->
+            <button id = "sideBarButton">
+                选票购座
+            </button>
+        </div>
+        <!--电影内容-->
+        <div id = "container" class = "container">
+            <!--左侧电影封面-->
+            <div id = "left_container">
+                <img class="ui medium rounded image" style="width:270px;height:360px;max-width:270px;" src="http://img5.gewara.com/cw270h360/images/movie/201605/s_6e62e7d_1549f7abdfd__7d7c.jpg"
+                th:src="|/images/${movie.poster}|"
+                />
+            </div>
+            <!--中间电影详细信息-->
+            <div id = "mid_container">
+                <div class="ui vertical segment">
+                <p th:text="|影片:&nbsp;${movie.name}|">影片:&nbsp;</p>
+                </div>
+
+                <div class="ui vertical segment">
+                <p>导演:&nbsp;<span th:each="director : ${movie.directors}"><span th:text="|${director}&nbsp;&nbsp;|">导演：费格尔·雷利 克雷·卡提斯</span></span></p>
+                </div>
+
+                <div class="ui vertical segment">
+                <p>主演:&nbsp;<span th:each="actor : ${movie.actors}"><span th:text="|${actor}&nbsp;&nbsp;|">主演：费格尔·雷利 克雷·卡提斯</span></span></p>
+                </div>
+
+                <div class="ui vertical segment">
+                <p>
+                    <p>类型：&nbsp;<span th:each="t : ${movie.type}"><span th:text="|${t}&nbsp;&nbsp;|">类型：魔幻</span></span></p>
+                    <p>特效：&nbsp;<span th:each="ver : ${movie.version}"><span th:text="|${ver}&nbsp;&nbsp;|">主演：费格尔·雷利 克雷·卡提斯</span></span></p>
+                    <p>时长：&nbsp;<span th:text="|${movie.duration}&nbsp;&nbsp;|">时长：170分钟</span></p>
+                    <p>语言：&nbsp;<span th:text="|${movie.language}&nbsp;&nbsp;|">语言：英语</span></p>
+                </p>
+                </div>
+
+                
+
+                
+            </div>
+            
+        </div>
+
+        <!--遮罩，侧栏弹出时遮挡背景-->
+        <div id="mask">
+        </div>
+
+        <!--侧栏-->
+        <div id = "sideBar" class = "container">
+            <!--侧栏顶部返回按钮和文字信息-->
+            <div id = "sideBarHead">
+                <div class="ui buttons" style="display:inline-block;">
+                    <button id ="backButton" class="ui button"><i class="left chevron icon"></i></button>
+                </div>
+                <div style="display:inline-block;padding-left:30px;font-size:25px;font-weight:bold;vertical-align:top;padding-top:8px;"><span>排片购票</span></div>
+            </div>
+            <!--一周的时间按钮-->
+            <div class="container">
+                <button class="large ui inverted orange button active">今天</button>
+                <button class="large ui inverted orange button">1月11日 周几</button>
+                <button class="large ui inverted orange button">1月11日 周几</button>
+                <button class="large ui inverted orange button">1月11日 周几</button>
+                <button class="large ui inverted orange button">1月11日 周几</button>
+                <button class="large ui inverted orange button">1月11日 周几</button>
+                <button class="large ui inverted orange button">1月11日 周几</button>
+            </div>
+            <!--主要信息-->
+            <div class="container" style="padding-top:15px;">
+                <!--左栏，地点选择-->
+                <div id="main_list1">    
+                    <div class="ui one column grid">
+                    <div class="column" style="padding-bottom:0rem;">
+                    <div class="ui segment">
+                    全部影院
+                    </div>
+                    </div>
+
+                    <div class="column" style="padding-top:0rem;padding-bottom:0rem;">
+                        <div id = "list1" class="ui segments">
+                            <div class="ui segment">
+                                <p>全部</p>
+                            </div>
+                            <div class="ui segment">
+                                <p>番禺区</p>
+                            </div>
+                            <div class="ui segment">
+                                <p>天河区</p>
+                            </div>
+                            <div class="ui segment">
+                                <p>越秀区</p>
+                            </div>
+                            <div class="ui segment">
+                                <p>海珠区</p>
+                            </div>
+                            <div class="ui segment">
+                                <p>海珠区</p>
+                            </div>
+                            <div class="ui segment">
+                                <p>海珠区</p>
+                            </div>
+                            <div class="ui segment">
+                                <p>海珠区</p>
+                            </div>
+                            <div class="ui segment">
+                                <p>海珠区</p>
+                            </div>
+                            <div class="ui segment">
+                                <p>海珠区</p>
+                            </div>
+                            <div class="ui segment">
+                                <p>海珠区</p>
+                            </div>
+                        </div>
+                    </div></div>
+                </div>
+                <!--中栏，影院选择-->
+                <div id="main_list2">
+                    <div class="ui one column grid">
+                    <div class="column" style="padding-bottom:0rem;">
+                        <div class="ui segment">
+                            特效厅
+                        </div>
+                    </div>
+
+                        <div class="column" style="padding-top:0rem;padding-bottom:0rem;">
+                            <div id = "list2" class="ui segments">
+                            <div class="ui segment">
+                                <p>广州白云万达影城</p>
+                            </div>
+                            <div class="ui segment">
+                                <p>广州白云万达影城</p>
+                            </div>
+                            <div class="ui segment">
+                                <p>广州白云万达影城</p>
+                            </div>
+                            <div class="ui segment">
+                                <p>广州白云万达影城</p>
+                            </div>
+                            <div class="ui segment">
+                                <p>广州白云万达影城</p>
+                            </div>
+                            <div class="ui segment">
+                                <p>广州白云万达影城</p>
+                            </div>
+                            <div class="ui segment">
+                                <p>广州白云万达影城</p>
+                            </div>
+                            <div class="ui segment">
+                                <p>广州白云万达影城</p>
+                            </div>
+                            <div class="ui segment">
+                                <p>广州白云万达影城</p>
+                            </div>
+                            <div class="ui segment">
+                                <p>广州白云万达影城</p>
+                            </div>
+                            <div class="ui segment">
+                                <p>广州白云万达影城</p>
+                            </div></div>
+                        </div>
+                    </div>
+                </div>
+                <!--右栏，场次选择-->
+                <div id="main_list3">
+                    <div class="ui one column grid">
+                    <div class="column" style="padding-bottom:0rem;">
+                        <div class="ui segment">
+                            <span class = "list_span">放映时间</span>
+                            <span class = "list_span">放映时间</span>
+                            <span class = "list_span">放映时间</span>
+                            <span class = "list_span">放映时间</span>
+                            <span class = "list_span">放映时间</span>
+                            <span class = "list_span">放映时间</span>
+                        </div>
+                    </div>
+
+                        <div class="column" style="padding-top:0rem;padding-bottom:0rem;">
+                            <div id = "list2" class="ui segments">
+                            <div class="ui segment">
+                                <span class="list_bigspan">
+                                    <span class = "list_item_top">11:20</span>
+                                    <span class = "list_item_bottom">12:57散场</span>
+                                </span>
+                                <span class="list_bigspan">
+                                    <span class = "list_item_top">英语</span>
+                                    <span class = "list_item_bottom">4D</span>
+                                </span>
+                                <span class="list_bigspan">
+                                    <span class = "list_item_middle">一号MX4D厅</span>
+                                </span>
+                                <span class="list_bigspan">
+                                    <span class = "list_item_top">65</span>
+                                    <span class = "list_item_bottom"><s>85</s></span>
+                                </span>
+                                <span class="list_bigspan">
+                                    <span class = "list_item_middle">直降10元</span>
+                                </span>
+                                <span class="list_bigspan">
+                                    <button class="ui orange button">选座购票</button>
+                                </span>
+                            </div>
+                            <div class="ui segment">
+                                <span class="list_bigspan">
+                                    <span class = "list_item_top">11:20</span>
+                                    <span class = "list_item_bottom">12:57散场</span>
+                                </span>
+                                <span class="list_bigspan">
+                                    <span class = "list_item_top">英语</span>
+                                    <span class = "list_item_bottom">4D</span>
+                                </span>
+                                <span class="list_bigspan">
+                                    <span class = "list_item_middle">一号MX4D厅</span>
+                                </span>
+                                <span class="list_bigspan">
+                                    <span class = "list_item_top">65</span>
+                                    <span class = "list_item_bottom"><s>85</s></span>
+                                </span>
+                                <span class="list_bigspan">
+                                    <span class = "list_item_middle">直降10元</span>
+                                </span>
+                                <span class="list_bigspan">
+                                    <button class="ui orange button">选座购票</button>
+                                </span>
+                            </div>
+                            <div class="ui segment">
+                                <span class="list_bigspan">
+                                    <span class = "list_item_top">11:20</span>
+                                    <span class = "list_item_bottom">12:57散场</span>
+                                </span>
+                                <span class="list_bigspan">
+                                    <span class = "list_item_top">英语</span>
+                                    <span class = "list_item_bottom">4D</span>
+                                </span>
+                                <span class="list_bigspan">
+                                    <span class = "list_item_middle">一号MX4D厅</span>
+                                </span>
+                                <span class="list_bigspan">
+                                    <span class = "list_item_top">65</span>
+                                    <span class = "list_item_bottom"><s>85</s></span>
+                                </span>
+                                <span class="list_bigspan">
+                                    <span class = "list_item_middle">直降10元</span>
+                                </span>
+                                <span class="list_bigspan">
+                                    <button class="ui orange button">选座购票</button>
+                                </span>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </body>
+</html>

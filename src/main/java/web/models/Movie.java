@@ -44,8 +44,14 @@ public class Movie implements Serializable {
 	@Column(name = "name")
 	private String name;
 	
+//	@ElementCollection
+//	@JoinTable(
+//			name = "movie_directors",
+//			joinColumns = @JoinColumn( name = "movieIdMovie" )
+//	)
+//	@Column(name = "directors", nullable = false)
 	@ElementCollection
-	@Column(name = "directors")
+	@Column(name = "directors", nullable = false)
 	private List<String> directors;
 	
 	@ElementCollection

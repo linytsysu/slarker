@@ -4,8 +4,8 @@
     <head>
         <meta charset="UTF-8" />
         <title>Slarker</title>
-        <link rel="stylesheet" type="text/css" href="libs/semantic-ui/semantic.min.css" />
-        <link rel="stylesheet" type="text/css" href="css/style.css" />
+        <link rel="stylesheet" type="text/css" href="/libs/semantic-ui/semantic.min.css" />
+        <link rel="stylesheet" type="text/css" href="/css/style.css" />
     </head>
     <body>
         <div>
@@ -135,66 +135,47 @@
                         <div class="clear"></div>
                     </div>
                     
-                    <div class="movies-container">
+                    <div class="movies-container" th:each="movie : ${movies}">
                         <div class="movie-container">
                             <div class="movie-poster">
-                                <img src="images/s_747af3c5_153f030b855__79af.jpg" alt="poster"/>
+                                <!--<img src="images/s_747af3c5_153f030b855__79af.jpg" th:src="@{/images/}+${movie.poster}" alt="poster"/>-->
+                                <img src="/images/s_747af3c5_153f030b855__79af.jpg" alt="poster"/>
                             </div>
                             <div class="movie-information">
                                 <div class="movie-title-field">
-                                    <h3><a href="#">愤怒的小鸟</a></h3>
-                                    <span>8.7</span>
+                                    <h3><a th:href="@{/movie/}+${movie.movieId}" th:text="${movie.name}"></a></h3>
+                                    <span th:text="${movie.star}"></span>
                                 </div>
                                 <div class="movie-field">
-                                    <p>类型：动画,喜剧,动作</p>
-                                    <p>语言：英语</p>
-                                    <p>片长：1小时37分钟</p>
-                                    <p>导演：费格尔·雷利 克雷·卡提斯</p>
-                                    <p>主演：杰森·苏戴奇斯 乔什·盖德 丹尼·麦克布耐德 玛娅·鲁道夫 彼特·丁拉基 比尔·哈德尔 吉甘-迈克尔·凯 吉奥弗瑞·阿伦德 托尼·海尔 吉丽安·贝尔</p>
-                                </div>
-                            </div>
-                            <div class="movie-button">
-                                <a href="#" class="link-button">选座购票</a>
-                            </div>
-                            <div class="clear"></div>
-                        </div>
-                        <div class="movie-container">
-                            <div class="movie-poster">
-                                <img src="images/s_747af3c5_153f030b855__79af.jpg" alt="poster"/>
-                            </div>
-                            <div class="movie-information">
-                                <div class="movie-title-field">
-                                    <h3><a href="#">愤怒的小鸟</a></h3>
-                                    <span>8.7</span>
-                                </div>
-                                <div class="movie-field">
-                                    <p>类型：动画,喜剧,动作</p>
-                                    <p>语言：英语</p>
-                                    <p>片长：1小时37分钟</p>
-                                    <p>导演：费格尔·雷利 克雷·卡提斯</p>
-                                    <p>主演：杰森·苏戴奇斯 乔什·盖德 丹尼·麦克布耐德 玛娅·鲁道夫 彼特·丁拉基 比尔·哈德尔 吉甘-迈克尔·凯 吉奥弗瑞·阿伦德 托尼·海尔 吉丽安·贝尔</p>
-                                </div>
-                            </div>
-                            <div class="movie-button">
-                                <a href="#" class="link-button">选座购票</a>
-                            </div>
-                            <div class="clear"></div>
-                        </div>
-                        <div class="movie-container">
-                            <div class="movie-poster">
-                                <img src="images/s_747af3c5_153f030b855__79af.jpg" alt="poster"/>
-                            </div>
-                            <div class="movie-information">
-                                <div class="movie-title-field">
-                                    <h3><a href="#">愤怒的小鸟</a></h3>
-                                    <span>8.7</span>
-                                </div>
-                                <div class="movie-field">
-                                    <p>类型：动画,喜剧,动作</p>
-                                    <p>语言：英语</p>
-                                    <p>片长：1小时37分钟</p>
-                                    <p>导演：费格尔·雷利 克雷·卡提斯</p>
-                                    <p>主演：杰森·苏戴奇斯 乔什·盖德 丹尼·麦克布耐德 玛娅·鲁道夫 彼特·丁拉基 比尔·哈德尔 吉甘-迈克尔·凯 吉奥弗瑞·阿伦德 托尼·海尔 吉丽安·贝尔</p>
+                                    <p>
+                                        <span>类型：</span>
+                                        <span th:each="t,iterStat : ${movie.type}" th:if="${iterStat.index} &lt; 4">
+                                            <span th:text="${t}"></span>
+                                        </span>
+                                    </p>
+                                    <p>
+                                        <span>语言：</span><span th:text="${movie.language}"></span>
+                                    </p>
+                                    <p>
+                                        <span>片长：</span>
+                                        <span th:text="${movie.duration}"></span>
+                                    </p>
+                                    <p>
+                                        <span>导演：</span>
+                                        <span th:each="director,iterStat : ${movie.directors}" th:if="${iterStat.index} &lt; 4">
+                                            <span th:text="${director}"></span>
+                                        </span>
+                                    </p>
+                                    <p>
+                                        <span>主演：</span>
+                                        <span th:each="actor,iterStat : ${movie.actors}" th:if="${iterStat.index} &lt; 4">
+                                            <span th:text="${actor}"></span>
+                                        </span>
+                                        <!-- get size -->
+                                        <!--<span th:each="count : ${#lists.size(movie.actors)}">
+                                            <span th:text="${count}"></span>
+                                        </span>-->
+                                    </p>
                                 </div>
                             </div>
                             <div class="movie-button">
@@ -213,8 +194,8 @@
             </div>
         </div>
       
-        <script type="text/javascript" src="libs/jquery/jquery-1.12.3.min.js"></script>
-        <script type="text/javascript" src="libs/semantic-ui/semantic.min.js"></script>
-        <script type="text/javascript" src="js/main.js"></script>
+        <script type="text/javascript" src="/libs/jquery/jquery-1.12.3.min.js"></script>
+        <script type="text/javascript" src="/libs/semantic-ui/semantic.min.js"></script>
+        <script type="text/javascript" src="/js/main.js"></script>
     </body>
 </html>

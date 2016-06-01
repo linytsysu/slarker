@@ -204,6 +204,9 @@ body {
 .movie-information .movie-field p {
     margin-bottom: 3px;
 }
+.movie-information .movie-field p span {
+    margin-right: 3px;
+}
 .movie-button {
     float: left;
     width: 100%;

@@ -1,0 +1,181 @@
+/*the style of the main part
+*/
+body{
+    font-family: "微软雅黑",verdana;
+}
+#body{
+    width: 90%;
+    padding-left:10%;
+    padding-top:2%;
+}
+#header{
+    width: 100%;
+    height: 450px;
+    overflow: hidden;
+    position: relative;
+}
+a.item{
+    color:#fff !important;
+    font-weight: bold !important;
+    font-size:14px;
+    line-height: 32px;
+    height: 32px;
+}
+div.item{
+    color:#ccc !important;
+}
+#header_bottom{
+    height: 100px;
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+}
+#left_bottom{
+    padding-left: 50px;
+    height: 170px;
+    display: inline-block;
+}
+#container{
+    height: 450px;
+    position: relative;
+    background:#ececec;
+}
+#left_container{
+    position: relative;
+    vertical-align:top;
+    width: 25%;
+    padding-left: 50px;
+    padding-top: 50px;
+    padding-bottom: 20px;
+    height: 100%;
+    display: inline-block !important;
+}
+#mid_container{
+    font-size:1.3em; 
+    position: relative;
+    vertical-align:top;
+    width: 70%;
+    padding-left: 50px;
+    padding-top: 50px;
+    padding-bottom: 20px;
+    height: 100%;
+    display: inline-block !important;
+}
+
+#mask{
+    width: 100%;
+    height: 1050px;
+    overflow: hidden;
+    visibility: visible;
+    zoom: 1;
+    opacity: 0.85;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 60;
+    display: block;
+    background: rgb(0, 0, 0);
+    display: none;
+}
+#sideBar{
+    display: block;
+    z-index: 99;
+    position: fixed;
+    top:0;
+    bottom: 0;
+    right: -1200px;
+    overflow: hidden;
+    width: 1200px;
+    padding:0 30px;
+    background: #ececec;
+    transition:right 0.6s;
+    -moz-transition:right 0.6s; /* Firefox 4 */
+    -webkit-transition:right 0.6s; /* Safari and Chrome */
+    -o-transition:right 0.6s; /* Opera */
+}
+#sideBarButton{
+    height: 100px;
+    opacity:0.85;
+    width:250px;
+    font-weight: bold;
+    font-size: 40px;
+    color: #fff;
+    position: absolute;
+    bottom: 0px;
+    right: 50px;
+    background-color: #f60;
+}
+#sideBarButton:hover{
+    opacity: 0.7;
+}
+#sideBarHead{
+    width: 100%;
+    display: block;
+    padding-top: 10px;
+}
+#main_list1{
+    display: inline-block;
+    vertical-align:top;
+    width:110px;
+    height: 440px;
+}
+#main_list2{
+    vertical-align:top;
+    display: inline-block;
+    width:330px;
+    height: 440px;
+}
+#main_list3{
+    vertical-align:top;
+    display: inline-block;
+    width:670px;
+    height: 440px;
+}
+#list1{
+    height: 410px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+#list2{
+    height: 410px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+#list3{
+    height: 410px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+.list_span{
+    display: inline-block;
+    vertical-align:top;
+    width: 100px;
+    padding: 0px 5px;
+}
+.list_bigspan{
+    text-align: center;
+    display: inline-block;
+    vertical-align:top;
+    width: 100px;
+    height: 50px;
+    padding: 0 5px;
+}
+.list_item_top{
+    display: block;
+    width: 100px;
+    height: 30px;
+    padding: 0 5px;    
+}
+.list_item_middle{
+    display: block;
+    width: 100px;
+    height: 50px;
+    line-height: 50px;
+    vertical-align: middle;
+}
+.list_item_bottom{
+    display: block;
+    width: 100px;
+    height: 20px;
+    padding: 0 5px;    
+}
