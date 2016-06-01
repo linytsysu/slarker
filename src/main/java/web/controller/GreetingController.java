@@ -11,9 +11,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import web.models.Cinema;
 import web.models.HallSeatStructure;
+import web.models.Movie;
 import web.models.Seat;
 import web.models.VideoHall;
 import web.repositories.CinemaRepository;
+import web.repositories.MovieRepository;
 import web.repositories.VideoHallRepository;
 
 @Controller
@@ -25,6 +27,9 @@ public class GreetingController {
 	@Autowired
 	private CinemaRepository cinema_repo;
 
+	@Autowired
+	private MovieRepository movie_repo;
+	
     @RequestMapping("/thymeleaf")
     public String thymeleaf(@RequestParam(value="name", required=false, defaultValue="World") String name, Model model) {
     	List<Cinema> cinemas = (List<Cinema>) cinema_repo.findAll();
@@ -33,7 +38,16 @@ public class GreetingController {
     	
     	return "thymeleaf";
     }
-	
+    
+    @RequestMapping("/test")
+    public String test(@RequestParam(value="name", required=false, defaultValue="World") String name, Model model) {
+    	List<Movie> movies = (List<Movie>) movie_repo.findAll();
+    	
+    	model.addAttribute("movies", movies);
+    	
+    	return "hihi";
+    }
+    
 //	@Autowired
 //	private PasswordEncoder passwordEncoder;
 	
