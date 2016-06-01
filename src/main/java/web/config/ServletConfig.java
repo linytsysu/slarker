@@ -59,9 +59,9 @@ public class ServletConfig extends WebMvcConfigurerAdapter {
     }
     
     // Initiate an Object when Starting application.
-//    @Bean
-//    public InsertData insertDate() {
-//    	InsertData insert_date = new InsertData();
-//    	return insert_date;
-//    }
+    @Bean
+    public InsertData insertDate() {
+    	InsertData insert_date = new InsertData();
+    	return insert_date;
+    }
 }
