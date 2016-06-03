@@ -35,4 +35,9 @@ public class IndexController {
     	
     	return "home";
     }
+    
+    @RequestMapping("/home")
+    public String home() {
+    	return "redirect:/";
+    }
 }
