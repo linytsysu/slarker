@@ -82,18 +82,26 @@ public class InsertData implements ApplicationListener<ContextRefreshedEvent> {
 //		if (region_repo.count() > 0) return;	// count > 0 means mysql database has been inserted data.
 		
 		// if mysql database has not been inserted data. Do the following action!
-
-		// Tables should be deleted in order
-		order_repo.deleteAll();
-		movie_scene_repo.deleteAll();
-		video_hall_repo.deleteAll();
-		cinema_repo.deleteAll();
-		region_repo.deleteAll();
-		hall_seat_struct_repo.deleteAll();
-		movie_repo.deleteAll();
-		scene_seat_info_repo.deleteAll();
-		user_role_repo.deleteAll();
-		user_repo.deleteAll();
+		
+//		cinema_repo.deleteAll();
+//		region_repo.deleteAll();
+//		movie_repo.deleteAll();
+//		movie_scene_repo.deleteAll();
+//		user_repo.deleteAll();
+//		hall_seat_struct_repo.deleteAll();
+//		video_hall_repo.deleteAll();
+//		scene_seat_info_repo.deleteAll();
+//		order_repo.deleteAll();
+		
+//		Calendar calendar = Calendar.getInstance();
+//		calendar.set(Calendar.HOUR, 0);
+//		calendar.set(Calendar.MINUTE, 0);
+//		calendar.set(Calendar.SECOND, 0);
+//		System.out.println(calendar);
+//		calendar.add(Calendar.DAY_OF_MONTH, 1);
+//		System.out.println(calendar);
+		
+		if (region_repo.count() > 0) return;
 		
 		// insert region info into Table Region.
 		// new PanYa district and BaiYun district.
@@ -305,12 +313,14 @@ public class InsertData implements ApplicationListener<ContextRefreshedEvent> {
 		User user_3 = new User("jiahao", passwordEncoder.encode("jiahao"), "jiahao@sina.com");
 		User user_4 = new User("yiting", passwordEncoder.encode("yiting"), "yiting@sina.com");
 		User user_5 = new User("langge", passwordEncoder.encode("langge"), "langge@sina.com");
+		User user_6 = new User("priya",  "$2a$04$CO93CT2ObgMiSnMAWwoBkeFObJlMYi/wzzOnPlsTP44r7qVq0Jln2", "priya@gmail.com");
 		
 		user_repo.save(user_1);
 		user_repo.save(user_2);
 		user_repo.save(user_3);
 		user_repo.save(user_4);
 		user_repo.save(user_5);
+		user_repo.save(user_6);
 		
 		// new UserRole
 		UserRole user_role_1 = new UserRole(user_1, "ROLE_USER");
@@ -318,12 +328,14 @@ public class InsertData implements ApplicationListener<ContextRefreshedEvent> {
 		UserRole user_role_3 = new UserRole(user_3, "ROLE_USER");
 		UserRole user_role_4 = new UserRole(user_4, "ROLE_USER");
 		UserRole user_role_5 = new UserRole(user_5, "ROLE_USER");
+		UserRole user_role_6 = new UserRole(user_6, "ROLE_USER");
 		
 		user_role_repo.save(user_role_1);
 		user_role_repo.save(user_role_2);
 		user_role_repo.save(user_role_3);
 		user_role_repo.save(user_role_4);
 		user_role_repo.save(user_role_5);
+		user_role_repo.save(user_role_6);
 		
 		// new TicketOrder
 		List<SeatInfo> avail_seat_1 = movie_scene_1.getAvailSeatRandom(0.02);

@@ -12,13 +12,17 @@ import javax.persistence.*;
 @Table(name = "Movie")
 public class Movie implements Serializable {
 	
+	public Movie() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
 	/**
 	 * 
 	 */
 
 	private static final long serialVersionUID = 5046320505351582223L;
 
-	public Movie() {}
 	
 	public Movie(String name, List<String> directors, List<String> actors, String poster, List<String> type,
 			String country, String language, String duration, Calendar releaseTime, List<String> version, double star,
