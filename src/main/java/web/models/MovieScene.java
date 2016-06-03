@@ -14,6 +14,11 @@ import web.repositories.SceneSeatInfoRepository;
 @Entity
 @Table(name = "MovieScene")
 public class MovieScene implements Serializable {
+	public MovieScene() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
 	/**
 	 * 
 	 */

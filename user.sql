@@ -19,8 +19,8 @@ use slarker;
 --    KEY fk_user_idx (userid),
 --    CONSTRAINT fk_userid FOREIGN KEY (userid) REFERENCES users (userid)
 -- );
--- INSERT INTO users(username,email,password)
--- VALUES ('priya','abc@abc.com','$2a$04$CO93CT2ObgMiSnMAWwoBkeFObJlMYi/wzzOnPlsTP44r7qVq0Jln2');
+ INSERT INTO users(username,email,password)
+ VALUES ('priya','abc@abc.com','$2a$04$CO93CT2ObgMiSnMAWwoBkeFObJlMYi/wzzOnPlsTP44r7qVq0Jln2');
 -- INSERT INTO users(username,email,password)
 -- VALUES ('naveen','def@def.com','$2a$04$j3JpPUp6CTAe.kMWmdRNC.Wie58xDNPfcYz0DBJxWkucJ6ekJuiJm');
 -- INSERT INTO user_roles (userid, role)
