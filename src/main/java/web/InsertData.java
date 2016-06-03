@@ -214,7 +214,7 @@ public class InsertData implements ApplicationListener<ContextRefreshedEvent> {
 		types_3.add("动作");
 		Calendar release_time_3 = Calendar.getInstance();
 		release_time_3.set(2016, 5, 20);
-		List<String> version_3 = new ArayList<String>();
+		List<String> version_3 = new ArrayList<String>();
 		version_3.add("3D");
 		version_3.add("巨幕");
 		Movie movie_3 = new Movie("愤怒的小鸟", directors_3, actors_3, "fenludexiaoniao.jpg", types_3, "美国", "英语", "1小时37分钟", release_time_3, version_3, 8.8, "fenludexiaoniao_bg.jpg");
