@@ -1,6 +1,8 @@
 package web.controller;
 
 import java.util.Calendar;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -35,6 +37,12 @@ public class MovieSceneController {
 			Calendar end = (Calendar) SlkUtil.deepClone(begin);
 			end.add(Calendar.DAY_OF_MONTH, 1);
 			List<MovieScene> movie_scenes = movie_scene_repo.findByCalendarBetween(begin, end);
+			Collections.sort(movie_scenes,new Comparator<MovieScene>(){  
+	            @Override  
+	            public int compare(MovieScene ms1, MovieScene ms2) {  
+	                return ms1.getBeginDate().compareTo(ms2.getBeginDate());  
+	            }
+	        });
 			rst.put(begin, movie_scenes);
 			begin = end;
 		}
