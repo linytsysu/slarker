@@ -2,6 +2,7 @@ package web;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -100,6 +101,17 @@ public class InsertData implements ApplicationListener<ContextRefreshedEvent> {
 //		System.out.println(calendar);
 //		calendar.add(Calendar.DAY_OF_MONTH, 1);
 //		System.out.println(calendar);
+		
+		// test Calendar
+		Date date1 = Calendar.getInstance().getTime();
+		Date date2 = Calendar.getInstance().getTime();
+		long d1 = date1.getTime();
+		long d2 = date2.getTime();
+		Date date = new Date();
+		date.setTime(d2-d1);
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(date);
+		System.out.println(calendar);
 		
 		if (region_repo.count() > 0) return;
 		
