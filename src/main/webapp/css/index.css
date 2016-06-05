@@ -160,6 +160,7 @@ div.item{
     width: 100px;
     height: 50px;
     padding: 0 10px;
+    margin-right: 3.8px;
 }
 .list_item_top{
     display: block;
