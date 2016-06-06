@@ -147,8 +147,9 @@ function createList3Element(obj){
 
 	var big_span_6 = document.createElement('span');
 	big_span_6.className = "list_bigspan";
-	var button1_6 = document.createElement('button');
+	var button1_6 = document.createElement('a');
 	button1_6.className = "ui orange button";
+	button1_6.href = "/choose";
 	button1_6.innerHTML = "选座购票";
 	big_span_6.appendChild(button1_6);
 	list3element.appendChild(big_span_6);
