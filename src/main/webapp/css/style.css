@@ -243,19 +243,19 @@ body {
 .seat-avi {
     width: 30px;
     height: 26px;
-    background-image: url("../../ico_seat.gif");
+    background-image: url("/images/ico_seat.gif");
     background-position: 0px 4px;
 }
 .seat-cho {
     width: 30px;
     height: 26px;
-    background-image: url("../../ico_seat.gif");
+    background-image: url("/images/ico_seat.gif");
     background-position: 0px -24px;
 }
 .seat-unavi {
     width: 30px;
     height: 26px;
-    background-image: url("../../ico_seat.gif");
+    background-image: url("/images/ico_seat.gif");
     background-position: 0px -54px;
 }
 
@@ -264,7 +264,7 @@ body {
     height: 38px;
     text-align: center;
     line-height: 2;
-    background: url("../../bg_screen.gif") center 0 no-repeat;
+    background: url("/images/bg_screen.gif") center 0 no-repeat;
 }
 
 .seat-table {

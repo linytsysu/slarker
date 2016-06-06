@@ -2,6 +2,7 @@ package web;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -92,6 +93,27 @@ public class InsertData implements ApplicationListener<ContextRefreshedEvent> {
 //		video_hall_repo.deleteAll();
 //		scene_seat_info_repo.deleteAll();
 //		order_repo.deleteAll();
+		
+//		Calendar calendar = Calendar.getInstance();
+//		calendar.set(Calendar.HOUR, 0);
+//		calendar.set(Calendar.MINUTE, 0);
+//		calendar.set(Calendar.SECOND, 0);
+//		System.out.println(calendar);
+//		calendar.add(Calendar.DAY_OF_MONTH, 1);
+//		System.out.println(calendar);
+		
+		// test Calendar
+		Date date1 = Calendar.getInstance().getTime();
+		Date date2 = Calendar.getInstance().getTime();
+		long d1 = date1.getTime();
+		long d2 = date2.getTime();
+		Date date = new Date();
+		date.setTime(d2-d1);
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(date);
+		System.out.println(calendar);
+		
+		if (region_repo.count() > 0) return;
 		
 		// insert region info into Table Region.
 		// new PanYa district and BaiYun district.
@@ -303,12 +325,14 @@ public class InsertData implements ApplicationListener<ContextRefreshedEvent> {
 		User user_3 = new User("jiahao", passwordEncoder.encode("jiahao"), "jiahao@sina.com");
 		User user_4 = new User("yiting", passwordEncoder.encode("yiting"), "yiting@sina.com");
 		User user_5 = new User("langge", passwordEncoder.encode("langge"), "langge@sina.com");
+		User user_6 = new User("priya",  "$2a$04$CO93CT2ObgMiSnMAWwoBkeFObJlMYi/wzzOnPlsTP44r7qVq0Jln2", "priya@gmail.com");
 		
 		user_repo.save(user_1);
 		user_repo.save(user_2);
 		user_repo.save(user_3);
 		user_repo.save(user_4);
 		user_repo.save(user_5);
+		user_repo.save(user_6);
 		
 		// new UserRole
 		UserRole user_role_1 = new UserRole(user_1, "ROLE_USER");
@@ -316,12 +340,14 @@ public class InsertData implements ApplicationListener<ContextRefreshedEvent> {
 		UserRole user_role_3 = new UserRole(user_3, "ROLE_USER");
 		UserRole user_role_4 = new UserRole(user_4, "ROLE_USER");
 		UserRole user_role_5 = new UserRole(user_5, "ROLE_USER");
+		UserRole user_role_6 = new UserRole(user_6, "ROLE_USER");
 		
 		user_role_repo.save(user_role_1);
 		user_role_repo.save(user_role_2);
 		user_role_repo.save(user_role_3);
 		user_role_repo.save(user_role_4);
 		user_role_repo.save(user_role_5);
+		user_role_repo.save(user_role_6);
 		
 		// new TicketOrder
 		List<SeatInfo> avail_seat_1 = movie_scene_1.getAvailSeatRandom(0.02);
